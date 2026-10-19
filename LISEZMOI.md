@@ -27,6 +27,11 @@ Site statique : aucun serveur, aucune base de données, aucun pistage.
 
 ## Mise en ligne
 
+En ligne sur **https://chez-bobette.netlify.app** (Netlify, relié à ce dépôt : chaque commit sur `main` met le site à jour,
+formulaires activés). Avec un nom de domaine, remplacer cette adresse dans index.html, confidentialite.html,
+robots.txt et sitemap.xml.
+
+
 - **Netlify (recommandé pour le client)** : relier ce dépôt GitHub, rien à construire (`netlify.toml` est prêt).
   Le formulaire de tournage fonctionne alors tout seul et les demandes arrivent par courriel.
 - **GitHub Pages (aperçu)** : le site fonctionne, mais le formulaire prépare la demande dans le courriel du visiteur

@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://chez-bobette.netlify.app/sitemap.xml
