@@ -1,0 +1,40 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent}</style>
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script></head>
+<body><script type="module">
+import * as THREE from "three";
+import { TTFLoader } from "three/addons/loaders/TTFLoader.js";
+import { Font } from "three/addons/loaders/FontLoader.js";
+import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+const P = new URLSearchParams(location.search);
+const W = +P.get("w") || 512, H = +P.get("h") || 640;
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+renderer.setSize(W, H); renderer.setPixelRatio(1);
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.appendChild(renderer.domElement);
+const scene = new THREE.Scene();
+const pm = new THREE.PMREMGenerator(renderer);
+scene.environment = pm.fromScene(new RoomEnvironment(), 0.04).texture;
+const cle = new THREE.DirectionalLight(0xffffff, 1.6); cle.position.set(-3, 4, 6); scene.add(cle);
+const camera = new THREE.PerspectiveCamera(30, W / H, 0.1, 100);
+window.rendre = async (lettre, couleur, yaw, roll) => {
+  const buf = await (await fetch("fredoka.woff")).arrayBuffer();
+  const font = new Font(new TTFLoader().parse(buf));
+  scene.children.filter(o => o.isMesh).forEach(o => scene.remove(o));
+  const g = new TextGeometry(lettre, { font, size: 1, depth: 0.06, curveSegments: 28,
+    bevelEnabled: true, bevelThickness: 0.2, bevelSize: 0.05, bevelSegments: 18 });
+  g.computeBoundingBox(); g.center(); g.computeVertexNormals();
+  const m = new THREE.MeshPhysicalMaterial({ color: new THREE.Color(couleur), metalness: 0.35, roughness: 0.2,
+    clearcoat: 1, clearcoatRoughness: 0.06, iridescence: 0.15 });
+  const mesh = new THREE.Mesh(g, m);
+  mesh.rotation.set(0.08, yaw, roll);
+  scene.add(mesh);
+  const b = new THREE.Box3().setFromObject(mesh), s = b.getSize(new THREE.Vector3());
+  const d = Math.max(s.y / (2 * Math.tan(THREE.MathUtils.degToRad(15))), s.x / (2 * Math.tan(THREE.MathUtils.degToRad(15)) * (W / H))) * 1.12;
+  camera.position.set(0, 0, d); camera.lookAt(0, 0, 0);
+  renderer.render(scene, camera);
+  return renderer.domElement.toDataURL("image/png");
+};
+window.pret = true;
+</script></body></html>
