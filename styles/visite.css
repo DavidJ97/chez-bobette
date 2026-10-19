@@ -1,0 +1,76 @@
+/*
+  Chez Bobette — la visite (visite.html).
+  Par défaut : version fixe, quatre photos et leur texte (sans script, ou « mouvement réduit »).
+  Avec la classe .film sur <html> : la scène reste à l'écran et le défilement fait avancer la vidéo.
+  Rien n'est posé sur la vidéo sauf la petite étiquette « Images provisoires ».
+*/
+body{background:var(--nuit);color:var(--clair)}
+.fin{background:#ddd6c6 url(../assets/img/94a53ba24e.webp) 50% 0/680px auto;color:var(--encre)}
+.pied{padding-top:32px}
+.v-barre{display:flex;align-items:center;gap:12px;height:60px;padding:0 var(--marge);background:#0b0808;border-bottom:1px solid var(--nuit-3)}
+.v-retour{min-height:44px;padding:6px 16px;font-size:15px}
+.v-titre{margin-right:auto;font-size:30px}
+.v-barre .langue{min-height:44px}
+
+/* ---------- version fixe ---------- */
+.ecran,.v-lcd,.v-defile{display:none}
+.pupitre{width:min(720px,100% - 2*var(--marge));margin:28px auto 56px}
+.etapes{display:grid;gap:44px}
+.etape img{width:100%;height:auto;margin-bottom:16px;border-radius:10px;background:#1b1311}
+.etape h2{display:flex;align-items:center;gap:14px;margin-bottom:10px;font-size:46px}
+.num{display:grid;place-items:center;flex:none;width:34px;height:34px;border-radius:50%;border:2px solid currentColor;font:700 17px/1 var(--f-lcd);text-shadow:none}
+.etape p{font-size:17px}
+.etape p b{color:#fff;font-weight:700}
+
+.fin .affichette{display:grid;gap:16px;max-width:640px}
+.fin .plaque{margin:0 0 30px 4px}
+.acts{display:flex;flex-wrap:wrap;gap:10px}
+
+/* ---------- version animée ---------- */
+.attente{overflow:hidden}
+.film .parcours{height:1000svh}
+.film .scene{position:sticky;top:0;display:grid;grid-template-rows:60px auto minmax(0,1fr);height:100svh;overflow:hidden;background:var(--nuit)}
+.film .ecran{display:block;position:relative;width:100%;aspect-ratio:4/3;max-height:50svh;background:#000;overflow:hidden}
+.film canvas{position:absolute;inset:0;width:100%;height:100%}
+.v-prov{position:absolute;left:8px;bottom:8px;padding:3px 8px;border-radius:4px;background:rgba(11,8,8,.86);color:var(--clair);font-size:14px;font-weight:600}
+.film .pupitre{display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:12px;width:auto;margin:0;padding:12px var(--marge) 10px}
+.film .v-lcd{display:flex;flex-wrap:wrap;gap:6px 10px}
+#v-lcd{flex:1 1 0;min-width:0}
+.jauge{flex:none;width:100%;height:4px;border-radius:2px;background:#123524;overflow:hidden}
+.jauge i{display:block;width:100%;height:100%;background:currentColor;transform-origin:0 50%;transform:scaleX(0)}
+.film .etapes{gap:0;align-content:start}
+.film .etape{grid-area:1/1;opacity:0;transform:translateY(10px);transition:opacity .3s,transform .3s;pointer-events:none}
+.film .etape.on{opacity:1;transform:none}
+.film .etape img{display:none}
+.film .etape h2{font-size:clamp(34px,6.2svh,46px);margin-bottom:6px}
+.film .etape p{font-size:16px}
+.film .v-defile{display:flex;align-items:center;justify-content:center;gap:8px;min-height:28px;font-weight:700;color:var(--vert);transition:opacity .3s}
+.v-defile i{font-style:normal;animation:bas 1.2s ease-in-out infinite}
+.v-defile.vu,.attente .v-defile{opacity:0}
+@keyframes bas{50%{transform:translateY(5px)}}
+
+/* téléphone haut : on profite de la place sous la vidéo */
+@media (max-aspect-ratio:1/1) and (min-height:700px){
+  .film .pupitre{gap:18px;padding-top:18px}
+  .film .etape h2{font-size:54px;margin-bottom:10px}
+  .film .etape p{font-size:18px;line-height:1.55}
+}
+/* téléphone couché, tablette couchée, ordinateur : le pupitre à gauche, la vidéo à droite */
+@media (min-aspect-ratio:1001/1000){
+  .film .scene{grid-template:"barre barre" 60px "pupitre ecran" minmax(0,1fr) / clamp(270px,32vw,440px) minmax(0,1fr)}
+  .film .v-barre{grid-area:barre}
+  .film .ecran{grid-area:ecran;aspect-ratio:auto;max-height:none;height:100%}
+  .film .pupitre{grid-area:pupitre;align-content:center;grid-template-rows:auto auto auto;gap:18px;padding:16px var(--marge)}
+}
+@media (min-aspect-ratio:1001/1000) and (max-height:480px){
+  .film .scene{grid-template-rows:52px minmax(0,1fr)}
+  .v-barre{height:52px}
+  .film .pupitre{gap:8px;padding:8px 14px}
+  .film .etape h2{font-size:32px;margin-bottom:2px}
+  .film .etape p{font-size:15px;line-height:1.4}
+}
+@media (min-width:900px) and (min-height:600px){
+  .film .etape h2{font-size:56px}
+  .film .etape p{font-size:18px}
+  .lcd{font-size:18px}
+}
