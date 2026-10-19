@@ -12,6 +12,9 @@
 <meta name="theme-color" content="#120e0d">
 <link rel="stylesheet" href="styles/commun.css">
 <link rel="stylesheet" href="styles/accueil.css">
+<link rel="stylesheet" href="styles/film.css">
+<!-- Met la page en mode « film » avant le premier affichage ; js/film.js la remet en version fixe s'il ne peut pas démarrer. -->
+<script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("film")</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23120e0d'/%3E%3Ccircle cx='32' cy='32' r='20' fill='none' stroke='%234dffa0' stroke-width='5'/%3E%3Ccircle cx='32' cy='32' r='9' fill='%23ff5fa8'/%3E%3C/svg%3E">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"DryCleaningOrLaundry","name":"Chez Bobette","address":{"@type":"PostalAddress","streetAddress":"850, avenue Duluth Est","addressLocality":"Montréal","addressRegion":"QC","addressCountry":"CA"}}</script>
 </head>
@@ -38,7 +41,6 @@
   <nav aria-label="Navigation principale" data-en-aria="Main navigation">
     <a class="btn" href="#infos" data-en="Hours and prices">Heures et prix</a>
     <a class="btn" href="#tournages" data-en="Filming location">Lieu de tournage</a>
-    <a class="btn" href="visite.html" data-en="The tour">La visite</a>
     <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=850%2C%20avenue%20Duluth%20Est%2C%20Montr%C3%A9al%2C%20QC" data-lien="carte" data-en="Directions">Itinéraire</a>
   </nav>
   <a class="e-tel" href="tel:+15145222612" data-lien="tel"><bdi data-bloc="tel">514 522-2612 <span class="ex">exemple</span></bdi></a>
@@ -47,36 +49,81 @@
 </header>
 
 <main>
-<section class="hero" aria-label="Accueil" data-en-aria="Home">
-  <h1 class="sr" data-en="Chez Bobette, neighbourhood laundromat in Plateau-Mont-Royal">Chez Bobette, buanderie de quartier du Plateau-Mont-Royal</h1>
-  <!-- L'enseigne : onze lettres ballons suspendues, une image par lettre (outils/preparer_lettres.py). js/mur.js les fait se balancer. -->
-  <div class="guirlande" id="guirlande" aria-hidden="true">
-    <div class="mot"><span class="lettre"><img src="assets/img/e5dcd0ee52.webp" width="251" height="360" alt="" fetchpriority="high" decoding="async"></span><span class="lettre"><img src="assets/img/39b3e6a584.webp" width="237" height="360" alt="" fetchpriority="high" decoding="async"></span><span class="lettre"><img src="assets/img/0323713e79.webp" width="201" height="360" alt="" fetchpriority="high" decoding="async"></span><span class="lettre"><img src="assets/img/db650aea3f.webp" width="232" height="360" alt="" fetchpriority="high" decoding="async"></span></div>
-    <div class="mot"><span class="lettre"><img src="assets/img/6b493f6e95.webp" width="199" height="360" alt="" fetchpriority="high" decoding="async"></span><span class="lettre"><img src="assets/img/7e44f36cc0.webp" width="195" height="360" alt="" fetchpriority="high" decoding="async"></span><span class="lettre"><img src="assets/img/347cb971e7.webp" width="153" height="360" alt="" fetchpriority="high" decoding="async"></span><span class="lettre"><img src="assets/img/5c08a3a473.webp" width="183" height="360" alt="" fetchpriority="high" decoding="async"></span><span class="lettre"><img src="assets/img/51cb806447.webp" width="198" height="360" alt="" fetchpriority="high" decoding="async"></span><span class="lettre"><img src="assets/img/51df251376.webp" width="195" height="360" alt="" fetchpriority="high" decoding="async"></span><span class="lettre"><img src="assets/img/d428a19c2d.webp" width="184" height="360" alt="" fetchpriority="high" decoding="async"></span></div>
+<!--
+  Le cœur du site : on défile, et la vidéo avance (la pièce, le lavage, l'essorage, le séchage).
+  Avec js/film.js, la scène reste à l'écran ; le premier écran (.hero) est un rideau de papier peint qui s'ouvre en hublot sur la vidéo.
+  Sans script, ou si le visiteur a demandé moins de mouvement : le premier écran, puis quatre photos avec leur texte.
+-->
+<div class="parcours" id="parcours">
+  <div class="scene" id="scene">
+  <section class="hero" aria-label="Accueil" data-en-aria="Home">
+    <h1 class="sr" data-en="Chez Bobette, neighbourhood laundromat in Plateau-Mont-Royal">Chez Bobette, buanderie de quartier du Plateau-Mont-Royal</h1>
+    <!-- L'enseigne : onze lettres ballons suspendues, une image par lettre (outils/preparer_lettres.py). js/mur.js les fait se balancer. -->
+    <div class="guirlande" id="guirlande" aria-hidden="true">
+      <div class="mot"><span class="lettre"><img src="assets/img/e5dcd0ee52.webp" width="251" height="360" alt="" fetchpriority="high" decoding="async"></span><span class="lettre"><img src="assets/img/39b3e6a584.webp" width="237" height="360" alt="" fetchpriority="high" decoding="async"></span><span class="lettre"><img src="assets/img/0323713e79.webp" width="201" height="360" alt="" fetchpriority="high" decoding="async"></span><span class="lettre"><img src="assets/img/db650aea3f.webp" width="232" height="360" alt="" fetchpriority="high" decoding="async"></span></div>
+      <div class="mot"><span class="lettre"><img src="assets/img/6b493f6e95.webp" width="199" height="360" alt="" fetchpriority="high" decoding="async"></span><span class="lettre"><img src="assets/img/7e44f36cc0.webp" width="195" height="360" alt="" fetchpriority="high" decoding="async"></span><span class="lettre"><img src="assets/img/347cb971e7.webp" width="153" height="360" alt="" fetchpriority="high" decoding="async"></span><span class="lettre"><img src="assets/img/5c08a3a473.webp" width="183" height="360" alt="" fetchpriority="high" decoding="async"></span><span class="lettre"><img src="assets/img/51cb806447.webp" width="198" height="360" alt="" fetchpriority="high" decoding="async"></span><span class="lettre"><img src="assets/img/51df251376.webp" width="195" height="360" alt="" fetchpriority="high" decoding="async"></span><span class="lettre"><img src="assets/img/d428a19c2d.webp" width="184" height="360" alt="" fetchpriority="high" decoding="async"></span></div>
+    </div>
+    <button class="langue" type="button" lang="en" aria-label="Switch to English">EN</button>
+    <div class="plaque enseigne" data-etat="ouvert">
+      <p class="neon mot-neon"><bdi data-bloc="statutMot">Ouvert</bdi></p>
+      <p class="suite-neon"><bdi data-bloc="statutSuite">tous les jours</bdi></p>
+    </div>
+    <div class="affichette h-heures">
+      <p class="feutre" data-en="Hours">Heures</p>
+      <p class="c-heures" data-bloc="heuresCourt"><span>Lun – ven <b>8 h – 23 h</b></span><span>Sam – dim <b>9 h – 21 h</b> <span class="ex">exemple</span></span></p>
+    </div>
+    <a class="pancarte h-prix" href="#infos">
+      <span class="p-haut" data-en="Here">Ici</span>
+      <bdi class="c-prix" data-bloc="prixHero"><span class="pp-nom">Laveuse</span><b>3,50 $</b> <span class="ex">exemple</span><span class="pp-mon">pièces de 25 ¢</span></bdi>
+      <span class="p-bas" data-en="All prices">Tous les prix</span>
+    </a>
+    <div class="postit e-tournage">
+      <a class="e-titre" href="#tournages"><span data-en="Filming location">Lieu de tournage</span><small data-en="Productions: rent the place.">Productions : le lieu se loue.</small></a>
+      <a class="btn e-go" href="#contact" data-en="Book">Réserver</a>
+    </div>
+    <a class="etiquette e-visite" href="#etapes">
+      <span class="e-titre"><span data-en="Scroll to come in">Défilez pour entrer</span><small data-en="The coin, the wash, the spin, the dry">La pièce, le lavage, l'essorage, le séchage</small></span>
+      <span class="e-go" id="invite" data-en="Scroll">Défilez</span>
+    </a>
+  </section>
+    <div class="ecran" id="ecran">
+      <canvas id="film" aria-hidden="true"></canvas>
+      <p class="v-prov" data-bloc="provisoireCourt" data-vide>Images provisoires</p>
+    </div>
+    <div class="pupitre">
+      <div class="p-tete">
+        <p class="lcd v-lcd" aria-hidden="true"><i class="voyant"></i><span id="v-lcd">1/4</span><span class="jauge"><i id="v-jauge"></i></span></p>
+        <button class="langue" type="button" lang="en" aria-label="Switch to English">EN</button>
+      </div>
+      <ol class="etapes" id="etapes">
+        <li class="etape affichette on">
+          <img src="assets/img/910276c34c.webp" width="1280" height="720" loading="lazy" decoding="async" alt="Une main glisse une pièce dans la fente de la machine." data-en-alt="A hand slides a coin into the machine's slot.">
+          <h2><span class="num">1</span><span data-en="Pay">Payer</span></h2>
+          <p data-bloc="v1">Glissez vos pièces de 25 ¢ dans la machine. Laveuse : <b>3,50 $</b> <span class="ex">exemple</span>. Un monnayeur sur place change vos billets. <span class="ex">exemple</span></p>
+        </li>
+        <li class="etape affichette">
+          <img src="assets/img/ece598076c.webp" width="1280" height="720" loading="lazy" decoding="async" alt="Des bas de couleur tournent dans l'eau savonneuse de la laveuse." data-en-alt="Coloured socks tumble in the washer's soapy water.">
+          <h2><span class="num">2</span><span data-en="Wash">Laver</span></h2>
+          <p data-bloc="v2">Pendant que ça tourne, installez-vous au long comptoir, côté vitrine. Wi-Fi gratuit pendant la brassée. <span class="ex">exemple</span> Pas le temps ? Service tout inclus : <b>8,25 $</b>.</p>
+        </li>
+        <li class="etape affichette">
+          <img src="assets/img/0b94c241e6.webp" width="1280" height="720" loading="lazy" decoding="async" alt="L'intérieur du tambour pendant l'essorage, la buanderie visible par le hublot." data-en-alt="Inside the drum during the spin cycle, the laundromat visible through the door.">
+          <h2><span class="num">3</span><span data-en="Spin">Essorer</span></h2>
+          <p data-bloc="v3">Laveuse géante : pour les tapis et les douillettes. Manteau d'hiver : <b>12 $ · 2 pour 20 $</b>.</p>
+        </li>
+        <li class="etape affichette">
+          <img src="assets/img/b8701ec816.webp" width="1280" height="720" loading="lazy" decoding="async" alt="Des bas de couleur tombent dans le tambour de la sécheuse." data-en-alt="Coloured socks drop into the dryer drum.">
+          <h2><span class="num">4</span><span data-en="Dry">Sécher</span></h2>
+          <p data-bloc="v4">Sécheuse : <b>0,25 $ par tranche</b> <span class="ex">exemple</span>. Bobette express : cueillette et livraison sur appel.</p>
+        </li>
+      </ol>
+      <div class="p-pied">
+        <p class="v-defile" id="v-defile" aria-hidden="true"><span data-en="Scroll">Défilez</span> <i>↓</i></p>
+        <a class="btn btn-ligne" href="#infos" data-en="Skip the film">Passer le film</a>
+      </div>
+    </div>
   </div>
-  <button class="langue" type="button" lang="en" aria-label="Switch to English">EN</button>
-  <div class="plaque enseigne" data-etat="ouvert">
-    <p class="neon mot-neon"><bdi data-bloc="statutMot">Ouvert</bdi></p>
-    <p class="suite-neon"><bdi data-bloc="statutSuite">tous les jours</bdi></p>
-  </div>
-  <div class="affichette h-heures">
-    <p class="feutre" data-en="Hours">Heures</p>
-    <p class="c-heures" data-bloc="heuresCourt"><span>Lun – ven <b>8 h – 23 h</b></span><span>Sam – dim <b>9 h – 21 h</b> <span class="ex">exemple</span></span></p>
-  </div>
-  <a class="pancarte h-prix" href="#infos">
-    <span class="p-haut" data-en="Here">Ici</span>
-    <bdi class="c-prix" data-bloc="prixHero"><span class="pp-nom">Laveuse</span><b>3,50 $</b> <span class="ex">exemple</span><span class="pp-mon">pièces de 25 ¢</span></bdi>
-    <span class="p-bas" data-en="All prices">Tous les prix</span>
-  </a>
-  <div class="postit e-tournage">
-    <a class="e-titre" href="#tournages"><span data-en="Filming location">Lieu de tournage</span><small data-en="Productions: rent the place.">Productions : le lieu se loue.</small></a>
-    <a class="btn e-go" href="#contact" data-en="Book">Réserver</a>
-  </div>
-  <a class="etiquette e-visite" href="visite.html">
-    <span class="e-titre"><span data-en="Take the tour">Faire la visite</span><small data-en="Pay, wash, spin, dry">Payer, laver, essorer, sécher</small></span>
-    <span class="e-go" data-en="Come in">Entrez</span>
-  </a>
-</section>
+</div>
 
 <section class="mur" id="infos" aria-labelledby="t-infos">
   <div class="contenu">
@@ -229,11 +276,10 @@
     <nav aria-label="Pied de page" data-en-aria="Footer">
       <a href="#infos" data-en="Hours and prices">Heures et prix</a>
       <a href="#tournages" data-en="Filming location">Lieu de tournage</a>
-      <a href="visite.html" data-en="The tour">La visite</a>
       <a href="confidentialite.html" data-en="Privacy">Confidentialité</a>
     </nav>
     <p class="demo si-exemples" data-bloc="demo">Version de démonstration, non publiée. Les mentions <span class="ex">exemple</span> sont à confirmer par le propriétaire.</p>
   </div>
 </footer>
-<script src="infos.js" defer></script><script src="js/commun.js" defer></script><script src="js/accueil.js" defer></script><script src="js/mur.js" defer></script></body>
+<script src="infos.js" defer></script><script src="js/commun.js" defer></script><script src="js/accueil.js" defer></script><script src="js/mur.js" defer></script><script src="js/sequences.js" defer></script><script src="js/film.js" defer onerror="document.documentElement.classList.remove('film','attente')"></script></body>
 </html>

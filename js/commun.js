@@ -1,5 +1,5 @@
 /*
-  Chez Bobette — code commun aux deux pages (index.html et visite.html).
+  Chez Bobette — le code commun du site.
   1. Fabrique, à partir de infos.js, le HTML des blocs marqués data-bloc="…".
   2. Calcule « Ouvert / Fermé » à l'heure de Montréal.
   3. Gère la bascule français / anglais et les mentions « exemple ».

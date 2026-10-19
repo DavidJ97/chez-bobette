@@ -60,7 +60,6 @@ body{padding-bottom:calc(var(--barre) + env(safe-area-inset-bottom))}
 .e-go{align-self:flex-start;min-height:44px;padding:8px 14px}
 .e-visite .e-go{display:inline-flex;align-items:center;border-radius:6px;background:var(--papier);color:var(--encre);font:700 14px/1.2 var(--f-lcd);letter-spacing:.06em;text-transform:uppercase;
   box-shadow:0 4px 0 #6d120e}
-.e-visite .e-go::after{content:"→";margin-left:8px}
 
 /* ---------- heures et prix ---------- */
 .plaque{margin:0 0 30px 4px}

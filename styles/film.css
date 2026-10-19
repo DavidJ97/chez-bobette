@@ -1,0 +1,81 @@
+/*
+  Chez Bobette — le film du premier écran (la pièce, le lavage, l'essorage, le séchage).
+  Par défaut : version fixe. Le premier écran, puis quatre affichettes avec leur photo (sans script, ou « mouvement réduit »).
+  Avec la classe .film sur <html> (posée avant le premier affichage, retirée par js/film.js s'il ne peut pas démarrer) :
+    - la scène reste à l'écran pendant qu'on défile ;
+    - le premier écran (.hero) devient un rideau de papier peint percé d'un hublot qui s'agrandit sur la vidéo ;
+    - rien n'est posé sur la vidéo, sauf la petite étiquette « Images provisoires ».
+*/
+:root{--bas:calc(var(--barre) + env(safe-area-inset-bottom))}
+
+/* ---------- version fixe ---------- */
+.ecran,.p-tete,.p-pied{display:none}
+.pupitre{width:min(720px,100% - 2*var(--marge));margin:12px auto 40px}
+.etapes{display:grid;gap:40px;margin:0;padding:0;list-style:none}
+.etape img{width:100%;height:auto;margin-bottom:14px;background:#1b1311}
+.etape h2{display:flex;align-items:center;gap:12px;margin-bottom:8px;color:var(--b-rouge);font:400 32px/1.05 var(--f-feutre)}
+.num{display:grid;place-items:center;flex:none;width:34px;height:34px;border-radius:50%;background:var(--encre);color:var(--papier);font:700 17px/1 var(--f-lcd)}
+.etape p{font-size:17px}
+.etape p b{font-weight:800}
+
+/* ---------- version animée ---------- */
+.attente{overflow:hidden}
+.film .parcours{height:1000svh}
+.film .scene{position:sticky;top:var(--entete);display:grid;grid-template-rows:auto minmax(0,1fr);height:calc(100svh - var(--entete) - var(--bas));overflow:hidden}
+/* le rideau : tout le premier écran, percé d'un hublot dont js/film.js règle le rayon (--trou) et le centre (--cx, --cy) */
+.film .hero{position:absolute;inset:0;z-index:3;min-height:0;background:#ddd6c6 url(../assets/img/94a53ba24e.webp) 50% 0/680px auto;
+  -webkit-mask-image:radial-gradient(circle at var(--cx,50%) var(--cy,30%),transparent calc(var(--trou,0px) - 1px),#000 var(--trou,0px));
+  mask-image:radial-gradient(circle at var(--cx,50%) var(--cy,30%),transparent calc(var(--trou,0px) - 1px),#000 var(--trou,0px))}
+.film .hero>*{translate:0 calc(var(--sortie,0)*-18svh);opacity:calc(1 - var(--sortie,0)*1.5)}
+.film .ecran{display:block;position:relative;width:100%;aspect-ratio:4/3;max-height:46svh;background:#000;overflow:hidden}
+.film canvas{position:absolute;inset:0;width:100%;height:100%}
+.v-prov{position:absolute;left:8px;bottom:8px;margin:0;padding:3px 8px;border-radius:4px;background:rgba(11,8,8,.86);color:var(--clair);font-size:14px;font-weight:600}
+.film .pupitre{display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:14px;width:auto;margin:0;padding:12px var(--marge) 14px}
+.film .p-tete{display:flex;gap:10px}
+.v-lcd{flex:1;min-width:0;flex-wrap:wrap;gap:6px 10px}
+#v-lcd{flex:1 1 0;min-width:0}
+.jauge{flex:none;width:100%;height:4px;border-radius:2px;background:#123524;overflow:hidden}
+.jauge i{display:block;width:100%;height:100%;background:currentColor;transform-origin:0 50%;transform:scaleX(0)}
+.film .etapes{gap:0;align-content:start;padding-top:8px}
+.film .etape{grid-area:1/1;padding:22px 18px 16px;opacity:0;rotate:2deg;translate:0 14px;transition:opacity .3s,translate .3s,rotate .3s;pointer-events:none}
+.film .etape.on{opacity:1;rotate:-.8deg;translate:0 0}
+.film .etape img{display:none}
+.film .etape h2{font-size:clamp(28px,5svh,36px);margin-bottom:6px}
+.film .etape p{font-size:16px}
+.film .p-pied{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.v-defile{display:inline-flex;align-items:center;gap:8px;min-height:36px;margin:0;padding:4px 12px;background:var(--jaune);color:var(--encre);font:400 18px/1 var(--f-feutre);box-shadow:var(--ombre);transform:rotate(-2deg);transition:opacity .3s}
+.v-defile i{font-style:normal;animation:bas 1.2s ease-in-out infinite}
+.v-defile.vu{opacity:0}
+.film .p-pied .btn{min-height:44px;padding:8px 12px}
+@keyframes bas{50%{transform:translateY(5px)}}
+.e-visite .e-go i{font-style:normal}
+.film .e-visite .e-go{animation:appel 1.4s ease-in-out infinite}
+.attente .e-visite .e-go{animation:none}
+@keyframes appel{50%{translate:0 4px}}
+
+@media (max-aspect-ratio:1/1) and (min-height:700px){
+  .film .pupitre{gap:16px;padding-top:16px}
+  .film .etape h2{font-size:38px}
+  .film .etape p{font-size:17px;line-height:1.55}
+}
+@media (min-aspect-ratio:1001/1000){
+  .film .scene{grid-template:"pupitre ecran" minmax(0,1fr) / clamp(280px,33vw,460px) minmax(0,1fr)}
+  .film .ecran{grid-area:ecran;aspect-ratio:auto;max-height:none;height:100%}
+  .film .pupitre{grid-area:pupitre;grid-template-rows:auto auto auto;align-content:center;gap:20px;padding:16px var(--marge)}
+}
+@media (min-aspect-ratio:1001/1000) and (max-height:480px){
+  .film .pupitre{gap:8px;padding:8px 14px}
+  .film .etape{padding:16px 14px 10px}
+  .film .etape h2{font-size:26px;margin-bottom:2px}
+  .film .etape p{font-size:15px;line-height:1.4}
+  .film .p-pied .btn{display:none}
+}
+@media (min-width:900px) and (min-height:600px){
+  :root{--bas:0px}
+  /* le rideau couvre toute la scène ; son contenu reste centré sur 1280 px */
+  .film .hero{width:auto;margin:0;padding-inline:max(var(--marge),(100% - 1280px)/2 + var(--marge));background-size:880px auto}
+  .film .etape{padding:30px 28px 24px}
+  .film .etape h2{font-size:44px}
+  .film .etape p{font-size:18px}
+  .lcd{font-size:18px}
+}
