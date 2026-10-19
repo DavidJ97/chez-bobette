@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="styles/commun.css">
 <link rel="stylesheet" href="styles/accueil.css">
 <link rel="stylesheet" href="styles/film.css">
+<link rel="stylesheet" href="styles/themes.css">
 <!-- Met la page en mode « film » avant le premier affichage ; js/film.js la remet en version fixe s'il ne peut pas démarrer. -->
 <script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("film")</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23120e0d'/%3E%3Ccircle cx='32' cy='32' r='20' fill='none' stroke='%234dffa0' stroke-width='5'/%3E%3Ccircle cx='32' cy='32' r='9' fill='%23ff5fa8'/%3E%3C/svg%3E">
@@ -77,17 +78,31 @@
       <p class="feutre" data-en="Hours">Heures</p>
       <p class="c-heures" data-bloc="heuresCourt"><span>Lun – ven <b>8 h – 23 h</b></span><span>Sam – dim <b>9 h – 21 h</b> <span class="ex">exemple</span></span></p>
     </div>
-    <a class="pancarte h-prix" href="#infos">
+    <a class="pancarte h-prix" href="#prix">
       <span class="p-haut" data-en="Here">Ici</span>
       <bdi class="c-prix" data-bloc="prixHero"><span class="pp-nom">Laveuse</span><b>3,50 $</b> <span class="ex">exemple</span><span class="pp-mon">pièces de 25 ¢</span></bdi>
       <span class="p-bas" data-en="All prices">Tous les prix</span>
     </a>
-    <div class="postit e-tournage">
+    <div class="pi pi-jaune e-tournage">
       <a class="e-titre" href="#tournages"><span data-en="Filming location">Lieu de tournage</span><small data-en="Productions: rent the place.">Productions : le lieu se loue.</small></a>
       <a class="btn e-go" href="#contact" data-en="Book">Réserver</a>
     </div>
-    <a class="etiquette e-visite" href="#etapes">
+    <a class="pi pi-rose e-visite" href="#etapes">
       <span class="e-titre"><span data-en="Scroll to come in">Défilez pour entrer</span><small data-en="The coin, the wash, the spin, the dry">La pièce, le lavage, l'essorage, le séchage</small></span>
+      <span class="geste" aria-hidden="true">
+        <svg class="g-main" viewBox="0 0 80 104"><defs><clipPath id="ecran-g1"><rect x="20" y="9" width="40" height="62" rx="4"/></clipPath></defs>
+          <rect class="g-tel" x="16" y="3" width="48" height="80" rx="9"/>
+          <g clip-path="url(#ecran-g1)"><g class="g-lignes"><rect x="25" y="14" width="30" height="9" rx="2"/><rect x="25" y="28" width="22" height="4" rx="2"/><rect x="25" y="37" width="28" height="4" rx="2"/><rect x="25" y="50" width="30" height="9" rx="2"/><rect x="25" y="64" width="18" height="4" rx="2"/><rect x="25" y="73" width="26" height="4" rx="2"/><rect x="25" y="86" width="30" height="9" rx="2"/></g></g>
+          <g class="g-doigt"><circle class="g-tap" cx="40" cy="58" r="7"/>
+            <path class="g-paume" d="M35 98V63a5.5 5.5 0 0 1 11 0v17l3-.6a5 5 0 0 1 9.6 1.2l.4 1.4a5 5 0 0 1 8.8 2.6l.2 6c0 6-3 10.4-7 13.4H38c-4.6-2.6-9.4-8-12.6-13l-3-4.6a4.4 4.4 0 0 1 7.2-5L35 89"/>
+          </g>
+        </svg>
+        <svg class="g-souris" viewBox="0 0 80 104">
+          <rect class="g-corps" x="20" y="6" width="40" height="64" rx="20"/><path class="g-raie" d="M40 6v22"/>
+          <rect class="g-roue" x="36.5" y="16" width="7" height="13" rx="3.5"/>
+          <path class="g-fleche" d="M30 80l10 9 10-9"/><path class="g-fleche f2" d="M30 91l10 9 10-9"/>
+        </svg>
+      </span>
       <span class="e-go" id="invite" data-en="Scroll">Défilez</span>
     </a>
   </section>
@@ -123,92 +138,159 @@
         </li>
       </ol>
       <div class="p-pied">
-        <p class="v-defile" id="v-defile" aria-hidden="true"><span data-en="Scroll">Défilez</span> <i>↓</i></p>
+        <p class="pi pi-jaune v-defile" id="v-defile" aria-hidden="true"><span class="geste" aria-hidden="true">
+        <svg class="g-main" viewBox="0 0 80 104"><defs><clipPath id="ecran-g2"><rect x="20" y="9" width="40" height="62" rx="4"/></clipPath></defs>
+          <rect class="g-tel" x="16" y="3" width="48" height="80" rx="9"/>
+          <g clip-path="url(#ecran-g2)"><g class="g-lignes"><rect x="25" y="14" width="30" height="9" rx="2"/><rect x="25" y="28" width="22" height="4" rx="2"/><rect x="25" y="37" width="28" height="4" rx="2"/><rect x="25" y="50" width="30" height="9" rx="2"/><rect x="25" y="64" width="18" height="4" rx="2"/><rect x="25" y="73" width="26" height="4" rx="2"/><rect x="25" y="86" width="30" height="9" rx="2"/></g></g>
+          <g class="g-doigt"><circle class="g-tap" cx="40" cy="58" r="7"/>
+            <path class="g-paume" d="M35 98V63a5.5 5.5 0 0 1 11 0v17l3-.6a5 5 0 0 1 9.6 1.2l.4 1.4a5 5 0 0 1 8.8 2.6l.2 6c0 6-3 10.4-7 13.4H38c-4.6-2.6-9.4-8-12.6-13l-3-4.6a4.4 4.4 0 0 1 7.2-5L35 89"/>
+          </g>
+        </svg>
+        <svg class="g-souris" viewBox="0 0 80 104">
+          <rect class="g-corps" x="20" y="6" width="40" height="64" rx="20"/><path class="g-raie" d="M40 6v22"/>
+          <rect class="g-roue" x="36.5" y="16" width="7" height="13" rx="3.5"/>
+          <path class="g-fleche" d="M30 80l10 9 10-9"/><path class="g-fleche f2" d="M30 91l10 9 10-9"/>
+        </svg>
+      </span><span data-en="Scroll">Défilez</span></p>
         <a class="btn btn-ligne" href="#infos" data-en="Skip the film">Passer le film</a>
       </div>
     </div>
   </div>
 </div>
 
-<section class="mur" id="infos" aria-labelledby="t-infos">
+<!-- ============ Après le film : un thème, un objet de la buanderie ============ -->
+
+<!-- 1. Les heures : l'affiche collée dans la vitrine -->
+<section class="theme" id="infos" aria-labelledby="t-heures">
   <div class="contenu">
-    <div class="plaque"><h2 class="neon" id="t-infos" data-en="Hours and prices">Heures et prix</h2></div>
-    <div class="g-infos">
-      <article class="affichette a-heures">
-        <h3 class="feutre" data-en="Opening hours">Heures d'ouverture</h3>
-        <table class="t-heures"><caption class="sr" data-en="Opening hours by day">Heures d'ouverture par jour</caption>
-          <tbody data-bloc="heures"><tr><th scope="row">Lundi au vendredi</th><td>8 h – 23 h</td></tr><tr><th scope="row">Samedi et dimanche</th><td>9 h – 21 h <span class="ex">exemple</span></td></tr></tbody>
-        </table>
-        <p class="petit" data-bloc="achalandage">Plus tranquille en matinée la semaine. Plus achalandé le dimanche. <span class="ex">exemple</span></p>
-      </article>
-      <article class="affichette a-tarifs">
-        <h3 class="feutre" data-en="Prices">Tarifs</h3>
-        <ul class="l-tarifs" data-bloc="tarifs"><li><span class="t-nom">Laveuse</span><span class="t-prix">3,50 $ <span class="ex">exemple</span></span></li><li><span class="t-nom">Sécheuse</span><span class="t-prix">0,25 $ par tranche <span class="ex">exemple</span></span></li><li><span class="t-nom">Service tout inclus <small>Affiché en vitrine</small></span><span class="t-prix">8,25 $</span></li><li><span class="t-nom">Manteau d'hiver <small>Affiché en vitrine</small></span><span class="t-prix">12 $ · 2 pour 20 $</span></li></ul>
-      </article>
-      <ul class="postits" data-bloc="pratique" aria-label="Bon à savoir" data-en-aria="Good to know"><li><h3>Monnaie</h3><p>Les machines prennent les pièces de 25 ¢.</p></li><li><h3>Monnayeur</h3><p>Un monnayeur sur place change vos billets. <span class="ex">exemple</span></p></li><li><h3>Wi-Fi</h3><p>Wi-Fi gratuit pendant la brassée. <span class="ex">exemple</span></p></li><li><h3>Laveuse géante</h3><p>Pour les tapis et les douillettes.</p></li><li><h3>Bobette express</h3><p>Cueillette et livraison sur appel.</p></li></ul>
-      <article class="affichette a-venir">
-        <div class="v-texte">
-          <h3 class="feutre" data-en="Getting here">Pour venir</h3>
-          <p class="adr"><bdi data-bloc="adresse">850, avenue Duluth Est</bdi><br><span class="petit">Plateau-Mont-Royal, Montréal</span></p>
-          <p data-en="Mont-Royal or Sherbrooke metro, about a ten-minute walk.">Métro Mont-Royal ou Sherbrooke, à une dizaine de minutes à pied.</p>
-          <p><span data-en="Phone: ">Téléphone : </span><a class="lien-tel" href="tel:+15145222612" data-lien="tel"><bdi data-bloc="tel">514 522-2612 <span class="ex">exemple</span></bdi></a></p>
-          <div class="acts">
-            <a class="btn btn-encre" href="https://www.google.com/maps/dir/?api=1&amp;destination=850%2C%20avenue%20Duluth%20Est%2C%20Montr%C3%A9al%2C%20QC" data-lien="carte"><svg aria-hidden="true"><use href="#i-route"/></svg><span data-en="Directions">Itinéraire</span></a>
-            <a class="btn btn-ligne" href="tel:+15145222612" data-lien="tel"><svg aria-hidden="true"><use href="#i-tel"/></svg><span data-en="Call">Appeler</span></a>
-          </div>
-        </div>
-        <figure class="plan">
-          <svg viewBox="0 0 600 460" role="img" aria-label="Plan simplifié : Chez Bobette est sur l'avenue Duluth, juste à l'est de la rue Saint-Hubert, entre le métro Mont-Royal au nord, le métro Sherbrooke au sud et le parc La Fontaine à l'est." data-en-aria="Simplified map: Chez Bobette is on Duluth Avenue, just east of Saint-Hubert Street, between Mont-Royal metro to the north, Sherbrooke metro to the south and La Fontaine Park to the east.">
-            <rect width="600" height="460" fill="#f3ecdb"/>
-            <rect x="440" y="150" width="170" height="250" fill="#bcd8a0"/>
-            <g fill="none" stroke="#fff"><path d="M0 50H600" stroke-width="16"/><path d="M0 150H600" stroke-width="12"/><path d="M0 400H600" stroke-width="18"/><path d="M90 0V460" stroke-width="14"/><path d="M300 0V460" stroke-width="12"/><path d="M440 150V400" stroke-width="10"/></g>
-            <path d="M0 265H440" stroke="#ffd27a" stroke-width="18" fill="none"/>
-            <g font-family="Archivo, Arial, sans-serif" font-size="23" font-weight="600" fill="#5a5148">
-              <text x="330" y="33">av. du Mont-Royal</text><text x="104" y="136">rue Rachel</text><text x="330" y="436">rue Sherbrooke</text>
-              <text x="104" y="212" transform="rotate(-90 104 212)" text-anchor="middle" dy="-22">St-Denis</text>
-              <text x="314" y="332" transform="rotate(-90 314 332)" text-anchor="middle" dy="-22">St-Hubert</text>
-              <text x="104" y="252" fill="#7a4d00" font-weight="800">avenue Duluth</text>
-              <text x="520" y="330" text-anchor="middle" fill="#2f5a22">parc</text><text x="520" y="356" text-anchor="middle" fill="#2f5a22">La Fontaine</text>
-            </g>
-            <g font-family="Archivo, Arial, sans-serif" font-size="23" font-weight="800" fill="#1b4fb5">
-              <g transform="translate(200 50)"><circle r="17" fill="#fff" stroke="#1b4fb5" stroke-width="3"/><path d="M-9 8V-8l9 10 9-10V8" fill="none" stroke="#1b4fb5" stroke-width="3.5" stroke-linejoin="round"/></g>
-              <text x="140" y="96">Mont-Royal</text>
-              <g transform="translate(200 400)"><circle r="17" fill="#fff" stroke="#1b4fb5" stroke-width="3"/><path d="M-9 8V-8l9 10 9-10V8" fill="none" stroke="#1b4fb5" stroke-width="3.5" stroke-linejoin="round"/></g>
-              <text x="112" y="372">Sherbrooke</text>
-            </g>
-            <g transform="translate(345 265)">
-              <rect x="-25" y="-92" width="250" height="40" rx="6" fill="#1f1b18"/>
-              <text x="100" y="-64" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="23" font-weight="700" fill="#fff">850, av. Duluth Est</text>
-              <path d="M0 4c-13-15-19-23-19-31a19 19 0 0 1 38 0c0 8-6 16-19 31z" fill="#d92f27" stroke="#7a0d08" stroke-width="2"/><circle cy="-27" r="7" fill="#fff"/>
-            </g>
-          </svg>
-          <figcaption class="petit" data-en="Simplified map, not to scale. North is up.">Plan simplifié, pas à l'échelle. Le nord est en haut.</figcaption>
-        </figure>
-      </article>
+    <div class="vitrine" data-etat="ouvert">
+      <p class="v-entete" aria-hidden="true">Chez Bobette · buanderie</p>
+      <h2 class="v-titre" id="t-heures" data-en="Opening hours">Heures d'ouverture</h2>
+      <p class="v-statut"><span class="v-pastille"><bdi data-bloc="statutMot">Ouvert</bdi></span> <bdi data-bloc="statutSuite">tous les jours</bdi></p>
+      <table class="v-heures"><caption class="sr" data-en="Opening hours by day">Heures d'ouverture par jour</caption>
+        <tbody data-bloc="heures"><tr><th scope="row">Lundi au vendredi</th><td>8 h – 23 h</td></tr><tr><th scope="row">Samedi et dimanche</th><td>9 h – 21 h <span class="ex">exemple</span></td></tr></tbody>
+      </table>
+      <p class="v-note" data-bloc="achalandage">Plus tranquille en matinée la semaine. Plus achalandé le dimanche. <span class="ex">exemple</span></p>
     </div>
   </div>
 </section>
 
-<section class="mur" id="tournages" aria-labelledby="t-tournages">
+<!-- 2. Les prix : le tableau à lettres en feutre -->
+<section class="theme" id="prix" aria-labelledby="t-prix">
   <div class="contenu">
-    <div class="plaque"><h2 class="neon bleu" id="t-tournages" data-en="Filming location">Lieu de tournage</h2></div>
-    <div class="g-tournage">
-      <article class="feuille f-service">
-        <p class="mono" data-en="Call sheet · Location scout">Feuille de service · Repérage</p>
-        <h3 class="f-titre" data-en="A set with nothing to invent">Un décor qui n'a rien à inventer</h3>
-        <p data-en="The laundromat, its storefront and the lane beside it can be rented for shoots in Montréal: films, series, commercials, music videos, photo sessions. Your request goes straight to the owner.">La buanderie, sa façade et la ruelle voisine se louent pour des tournages à Montréal : films, séries, publicités, vidéoclips, séances photo. Votre demande arrive directement au propriétaire.</p>
-        <h4 class="mono" data-en="Sets">Décors</h4>
-        <ol class="decors">
-          <li><b data-en="Int. laundromat">Int. buanderie</b><span data-en="Floral wallpaper, long counter by the window, rows of washers and dryers.">Papier peint fleuri, long comptoir côté vitrine, laveuses et sécheuses en rangées.</span></li>
-          <li><b data-en="Ext. storefront, Duluth Avenue">Ext. façade, avenue Duluth</b><span data-en="Brick, large windows, sign in coloured balloon letters.">Brique, grandes vitrines, enseigne en lettres ballons de couleur.</span></li>
-          <li><b data-en="Ext. lane">Ext. ruelle</b><span data-en="The lane runs along the building.">La ruelle longe le bâtiment.</span></li>
-        </ol>
-        <h4 class="mono" data-en="Tech sheet">Fiche technique</h4>
-        <dl class="fiche" data-bloc="lieu"><div><dt>Tarif de location</dt><dd class="a-conf">à confirmer avec le propriétaire</dd></div><div><dt>Surface</dt><dd class="a-conf">à confirmer avec le propriétaire</dd></div><div><dt>Hauteur de plafond</dt><dd class="a-conf">à confirmer avec le propriétaire</dd></div><div><dt>Électricité</dt><dd class="a-conf">à confirmer avec le propriétaire</dd></div><div><dt>Stationnement et camions</dt><dd class="a-conf">à confirmer avec le propriétaire</dd></div><div><dt>Heures de tournage</dt><dd class="a-conf">à confirmer avec le propriétaire</dd></div></dl>
-        <div class="deja" data-bloc="tournages" data-vide></div>
-        <a class="btn btn-encre" href="#contact" data-en="Book the location">Réserver le lieu</a>
-      </article>
-      <ul class="photos" aria-label="Photos du lieu" data-en-aria="Photos of the location">
+    <h2 class="titre-ruban" id="t-prix" data-en="Prices">Les prix</h2>
+    <div class="tableau">
+      <ul class="l-tarifs" data-bloc="tarifs"><li><span class="t-nom">Laveuse</span><span class="t-prix">3,50 $ <span class="ex">exemple</span></span></li><li><span class="t-nom">Sécheuse</span><span class="t-prix">0,25 $ par tranche <span class="ex">exemple</span></span></li><li><span class="t-nom">Service tout inclus <small>Affiché en vitrine</small></span><span class="t-prix">8,25 $</span></li><li><span class="t-nom">Manteau d'hiver <small>Affiché en vitrine</small></span><span class="t-prix">12 $ · 2 pour 20 $</span></li></ul>
+      <p class="t-pied" data-en="Quarters only · change machine on site">Pièces de 25 ¢ seulement · monnayeur sur place</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Bon à savoir : le mur de post-it -->
+<section class="theme" id="savoir" aria-labelledby="t-savoir">
+  <div class="contenu">
+    <h2 class="pi pi-orange titre-pi" id="t-savoir" data-en="Good to know">Bon à savoir</h2>
+    <ul class="postits" data-bloc="pratique" aria-label="Bon à savoir" data-en-aria="Good to know"><li><h3>Monnaie</h3><p>Les machines prennent les pièces de 25 ¢.</p></li><li><h3>Monnayeur</h3><p>Un monnayeur sur place change vos billets. <span class="ex">exemple</span></p></li><li><h3>Wi-Fi</h3><p>Wi-Fi gratuit pendant la brassée. <span class="ex">exemple</span></p></li><li><h3>Laveuse géante</h3><p>Pour les tapis et les douillettes.</p></li><li><h3>Bobette express</h3><p>Cueillette et livraison sur appel.</p></li></ul>
+  </div>
+</section>
+
+<!-- 4. Pour venir : le trajet, en parcours horizontal sur le plan du quartier (js/trajet.js) -->
+<section class="theme t-trajet" id="venir" aria-labelledby="t-venir">
+  <div class="trajet" id="trajet">
+    <div class="tr-scene">
+      <header class="tr-tete">
+        <h2 class="titre-ruban bleu" id="t-venir" data-en="Getting here">Pour venir</h2>
+        <p class="tr-adr"><bdi data-bloc="adresse">850, avenue Duluth Est</bdi> <span>· Plateau-Mont-Royal</span></p>
+      </header>
+      <div class="tr-cadre">
+        <svg class="carte" id="carte" viewBox="0 0 1800 720" role="img" aria-label="Plan du quartier : du métro Mont-Royal, on descend vers le sud jusqu'à l'avenue Duluth, puis on la suit vers l'est, après la rue Saint-Hubert. Le parc La Fontaine est un peu plus à l'est, le métro Sherbrooke au sud." data-en-aria="Neighbourhood map: from Mont-Royal metro, walk south to Duluth Avenue, then follow it east, past Saint-Hubert Street. La Fontaine Park is a little further east, Sherbrooke metro to the south.">
+          <defs>
+            <pattern id="hachures" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><path d="M0 0V10" stroke="#e3d6bb" stroke-width="3"/></pattern>
+            <pattern id="herbe" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="1.3" fill="#8fbf6a"/><circle cx="11" cy="10" r="1.1" fill="#8fbf6a"/></pattern>
+            <symbol id="arbre" viewBox="-20 -20 40 40"><circle r="15" fill="#6fa64d"/><circle cx="-5" cy="-5" r="7" fill="#8cc066"/></symbol>
+            <symbol id="metro" viewBox="-22 -22 44 44"><circle r="20" fill="#fff" stroke="#1b4fb5" stroke-width="4"/><path d="M-10 9V-9l10 11 10-11V9" fill="none" stroke="#1b4fb5" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+          </defs>
+          <rect width="1800" height="720" fill="#f6efdf"/>
+          <!-- îlots de maisons (plex en rangée) -->
+          <g fill="url(#hachures)" stroke="#e0d0b0" stroke-width="2">
+            <rect x="0" y="0" width="260" height="70" rx="10"/><rect x="330" y="0" width="520" height="70" rx="10"/><rect x="920" y="0" width="380" height="70" rx="10"/>
+            <rect x="0" y="120" width="260" height="120" rx="10"/><rect x="330" y="120" width="250" height="120" rx="10"/><rect x="630" y="120" width="220" height="120" rx="10"/><rect x="920" y="120" width="380" height="120" rx="10"/>
+            <rect x="0" y="290" width="260" height="110" rx="10"/><rect x="330" y="290" width="250" height="110" rx="10"/><rect x="630" y="290" width="220" height="110" rx="10"/><rect x="920" y="290" width="380" height="110" rx="10"/>
+            <rect x="0" y="450" width="260" height="170" rx="10"/><rect x="330" y="450" width="250" height="170" rx="10"/><rect x="630" y="450" width="220" height="170" rx="10"/><rect x="920" y="450" width="380" height="170" rx="10"/>
+            <rect x="0" y="670" width="1300" height="60" rx="10"/>
+          </g>
+          <!-- le parc La Fontaine -->
+          <rect x="1370" y="120" width="440" height="500" rx="28" fill="#cfe6b4"/><rect x="1370" y="120" width="440" height="500" rx="28" fill="url(#herbe)"/>
+          <path d="M1470 330c40-40 150-50 210-10s40 120-30 140-170 10-200-40 0-70 20-90z" fill="#9fd0ea" stroke="#7fb9d8" stroke-width="3"/>
+          <g><use href="#arbre" x="1385" y="135" width="44" height="44"/><use href="#arbre" x="1440" y="170" width="38" height="38"/><use href="#arbre" x="1700" y="150" width="46" height="46"/><use href="#arbre" x="1750" y="230" width="40" height="40"/><use href="#arbre" x="1400" y="520" width="46" height="46"/><use href="#arbre" x="1530" y="540" width="40" height="40"/><use href="#arbre" x="1700" y="520" width="48" height="48"/><use href="#arbre" x="1390" y="250" width="36" height="36"/><use href="#arbre" x="1610" y="200" width="34" height="34"/></g>
+          <!-- les rues -->
+          <g fill="none" stroke-linecap="round">
+            <g stroke="#e7dcc4" stroke-width="40"><path d="M0 95H1800"/><path d="M0 265H1370"/><path d="M0 645H1800"/><path d="M295 0V720"/><path d="M885 0V720"/><path d="M605 70V670"/><path d="M1335 0V720"/></g>
+            <g stroke="#fff" stroke-width="32"><path d="M0 95H1800"/><path d="M0 265H1370"/><path d="M0 645H1800"/><path d="M295 0V720"/><path d="M885 0V720"/><path d="M605 70V670"/><path d="M1335 0V720"/></g>
+            <path d="M0 425H1370" stroke="#f2c21a" stroke-width="36" opacity=".55"/>
+            <path d="M0 425H1370" stroke="#fff6cf" stroke-width="22"/>
+          </g>
+          <!-- le trajet à pied (dessiné au défilement) -->
+          <path class="tr-chemin-fond" d="M605 125V425H1040"/>
+          <path class="tr-chemin" id="chemin" d="M605 125V425H1040"/>
+          <!-- les noms de rue, écrits comme sur un plan dessiné à la main -->
+          <g class="tr-rues">
+            <text x="1000" y="105">avenue du Mont-Royal</text><text x="40" y="275">rue Rachel</text><text x="40" y="655">rue Sherbrooke</text>
+            <text x="40" y="435" class="tr-duluth">avenue Duluth</text>
+            <text transform="translate(305 560) rotate(-90)">rue Saint-Denis</text>
+            <text transform="translate(895 560) rotate(-90)">rue Saint-Hubert</text>
+            <text x="1590" y="400" text-anchor="middle" class="tr-parc">parc La Fontaine</text>
+          </g>
+          <!-- les métros -->
+          <use href="#metro" x="580" y="70" width="50" height="50"/>
+          <text class="tr-metro" x="640" y="58">Mont-Royal</text>
+          <use href="#metro" x="1070" y="620" width="50" height="50"/>
+          <text class="tr-metro" x="1130" y="700">Sherbrooke</text>
+          <!-- la buanderie : sa façade en brique et ses lettres ballons -->
+          <g transform="translate(1040 425)">
+            <ellipse cx="0" cy="8" rx="34" ry="8" fill="rgba(60,30,0,.18)"/>
+            <path d="M-34 0V-70h68V0z" fill="#b5523b" stroke="#7a2f20" stroke-width="3"/>
+            <rect x="-26" y="-46" width="52" height="34" rx="2" fill="#bfe3f5" stroke="#7a2f20" stroke-width="2"/>
+            <g><circle cx="-24" cy="-60" r="6" fill="#1b6fd0"/><circle cx="-12" cy="-60" r="6" fill="#c8261f"/><circle cx="0" cy="-60" r="6" fill="#f2c21a"/><circle cx="12" cy="-60" r="6" fill="#157a43"/><circle cx="24" cy="-60" r="6" fill="#c8261f"/></g>
+            <rect x="-64" y="-118" width="128" height="34" rx="6" fill="#1f1b18"/>
+            <text x="0" y="-94" text-anchor="middle" class="tr-ici">Chez Bobette</text>
+          </g>
+        </svg>
+      </div>
+      <ol class="tr-etapes" id="tr-etapes">
+        <li class="pi pi-jaune on"><b>1</b><span data-en="Get off at Mont-Royal metro.">Sortez au métro Mont-Royal.</span></li>
+        <li class="pi pi-bleu"><b>2</b><span data-en="Walk south to Duluth Avenue.">Descendez vers le sud jusqu'à l'avenue Duluth.</span></li>
+        <li class="pi pi-vert"><b>3</b><span data-en="Turn left on Duluth, heading east, past Saint-Hubert.">Prenez Duluth à gauche, vers l'est, après Saint-Hubert.</span></li>
+        <li class="pi pi-rose"><b>4</b><span data-en="Look for the balloon letters: you're here. About 10 minutes on foot.">Cherchez les lettres ballons : vous y êtes. Une dizaine de minutes à pied.</span></li>
+      </ol>
+      <div class="tr-acts">
+        <a class="btn btn-encre" href="https://www.google.com/maps/dir/?api=1&amp;destination=850%2C%20avenue%20Duluth%20Est%2C%20Montr%C3%A9al%2C%20QC" data-lien="carte"><svg aria-hidden="true"><use href="#i-route"/></svg><span data-en="Directions">Itinéraire</span></a>
+        <a class="btn btn-ligne" href="tel:+15145222612" data-lien="tel"><svg aria-hidden="true"><use href="#i-tel"/></svg><span data-en="Call">Appeler</span></a>
+      </div>
+      <p class="tr-note" data-en="Hand-drawn map, not to scale. From Sherbrooke metro, walk north instead.">Plan dessiné, pas à l'échelle. Du métro Sherbrooke, remontez plutôt vers le nord.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Le lieu de tournage : le clap, la pellicule, le scénario, la feuille de service -->
+<section class="theme" id="tournages" aria-labelledby="t-tournages">
+  <div class="contenu">
+    <div class="clap">
+      <div class="clap-barre" aria-hidden="true"></div>
+      <div class="clap-ardoise">
+        <h2 class="clap-titre" id="t-tournages" data-en="Filming location">Lieu de tournage</h2>
+        <dl class="clap-cases">
+          <div><dt data-en="Location">Lieu</dt><dd>Chez Bobette</dd></div>
+          <div><dt data-en="Sets">Décors</dt><dd>3</dd></div>
+          <div><dt data-en="City">Ville</dt><dd>Montréal</dd></div>
+        </dl>
+      </div>
+    </div>
+    <p class="clap-texte" data-en="The laundromat, its storefront and the lane beside it can be rented for films, series, commercials, music videos and photo shoots. Your request goes straight to the owner.">La buanderie, sa façade et la ruelle voisine se louent pour des films, des séries, des publicités, des vidéoclips et des séances photo. Votre demande arrive directement au propriétaire.</p>
+  </div>
+
+  <div class="bande" aria-label="Photos du lieu" data-en-aria="Photos of the location">
+    <ul class="pellicule" aria-label="Photos du lieu" data-en-aria="Photos of the location">
         <li><a class="polaroid" href="assets/img/fb5654e97e.webp"><img src="assets/img/fb5654e97e.webp" width="720" height="540" loading="lazy" decoding="async" alt="La façade en brique, de jour, avec l'enseigne colorée et la ruelle à droite." data-en-alt="The brick storefront by day, with the colourful sign and the lane on the right."><span data-en="Ext. storefront, day">Ext. façade, de jour</span></a></li>
         <li><a class="polaroid" href="assets/img/299747941c.webp"><img src="assets/img/299747941c.webp" width="720" height="540" loading="lazy" decoding="async" alt="La ruelle bordée d'arbres, le long du mur de brique." data-en-alt="The tree-lined lane along the brick wall."><span data-en="Ext. lane">Ext. ruelle</span></a></li>
         <li><a class="polaroid" href="assets/img/4c503a9045.webp"><img src="assets/img/4c503a9045.webp" width="720" height="540" loading="lazy" decoding="async" alt="Une rangée de laveuses blanches devant le papier peint fleuri." data-en-alt="A row of white washers in front of the floral wallpaper."><span data-en="Int. the washers">Int. les laveuses</span></a></li>
@@ -216,11 +298,25 @@
         <li><a class="polaroid" href="assets/img/7c68f6b453.webp"><img src="assets/img/7c68f6b453.webp" width="720" height="540" loading="lazy" decoding="async" alt="Le long comptoir courbe et ses fauteuils, le long de la vitrine." data-en-alt="The long curved counter and its chairs along the window."><span data-en="Int. the counter, wide">Int. le comptoir, plan large</span></a></li>
         <li><a class="polaroid" href="assets/img/7da8be2a65.webp"><img src="assets/img/7da8be2a65.webp" width="720" height="540" loading="lazy" decoding="async" alt="Le comptoir vu de près, avec la rue en reflet dans la vitrine." data-en-alt="The counter up close, with the street reflected in the window."><span data-en="Int. window side">Int. côté vitrine</span></a></li>
       </ul>
+  </div>
+
+  <div class="contenu g-plateau">
+    <div class="scenario">
+      <p class="sc-tete" data-en="The three sets">Les trois décors</p>
+      <div class="sc-scene"><h3>INT. BUANDERIE — <span data-en="DAY / NIGHT">JOUR / NUIT</span></h3><p data-en="Floral wallpaper, a long counter by the window, rows of washers and dryers.">Papier peint fleuri, long comptoir côté vitrine, laveuses et sécheuses en rangées.</p></div>
+      <div class="sc-scene"><h3>EXT. <span data-en="STOREFRONT, DULUTH AVENUE">FAÇADE, AVENUE DULUTH</span></h3><p data-en="Brick, large windows, a sign in coloured balloon letters.">Brique, grandes vitrines, enseigne en lettres ballons de couleur.</p></div>
+      <div class="sc-scene"><h3>EXT. <span data-en="LANE">RUELLE</span></h3><p data-en="The lane runs along the building.">La ruelle longe le bâtiment.</p></div>
+    </div>
+    <div class="feuille f-service">
+      <p class="mono" data-en="Call sheet · tech sheet">Feuille de service · fiche technique</p>
+      <dl class="fiche" data-bloc="lieu"><div><dt>Tarif de location</dt><dd class="a-conf">à confirmer avec le propriétaire</dd></div><div><dt>Surface</dt><dd class="a-conf">à confirmer avec le propriétaire</dd></div><div><dt>Hauteur de plafond</dt><dd class="a-conf">à confirmer avec le propriétaire</dd></div><div><dt>Électricité</dt><dd class="a-conf">à confirmer avec le propriétaire</dd></div><div><dt>Stationnement et camions</dt><dd class="a-conf">à confirmer avec le propriétaire</dd></div><div><dt>Heures de tournage</dt><dd class="a-conf">à confirmer avec le propriétaire</dd></div></dl>
+      <div class="deja" data-bloc="tournages" data-vide></div>
+      <a class="btn btn-encre" href="#contact" data-en="Book the location">Réserver le lieu</a>
     </div>
   </div>
 </section>
 
-<section class="mur" id="contact" aria-labelledby="t-contact">
+<section class="theme" id="contact" aria-labelledby="t-contact">
   <div class="contenu g-contact">
     <div class="c-intro">
       <div class="plaque"><h2 class="neon vert" id="t-contact" data-en="Filming request">Demande de tournage</h2></div>
@@ -231,9 +327,10 @@
         <div class="languettes" id="languettes" aria-hidden="true"><button type="button" class="languette" tabindex="-1"><bdi data-bloc="telNu">514 522-2612</bdi></button><button type="button" class="languette" tabindex="-1"><bdi data-bloc="telNu">514 522-2612</bdi></button><button type="button" class="languette" tabindex="-1"><bdi data-bloc="telNu">514 522-2612</bdi></button><button type="button" class="languette" tabindex="-1"><bdi data-bloc="telNu">514 522-2612</bdi></button><button type="button" class="languette" tabindex="-1"><bdi data-bloc="telNu">514 522-2612</bdi></button><button type="button" class="languette" tabindex="-1"><bdi data-bloc="telNu">514 522-2612</bdi></button></div>
       </div>
     </div>
-    <form class="feuille formulaire" id="form" name="tournage" method="POST" data-netlify="true" netlify-honeypot="adresse-web" novalidate>
+    <form class="ticket formulaire" id="form" name="tournage" method="POST" data-netlify="true" netlify-honeypot="adresse-web" novalidate>
       <input type="hidden" name="form-name" value="tournage">
       <p class="piege"><label>Ne pas remplir <input name="adresse-web" tabindex="-1" autocomplete="off"></label></p>
+      <div class="ticket-tete" aria-hidden="true"><span>Chez Bobette</span><span class="ticket-no">N° 0850</span></div>
       <p class="mono" data-en="Request form">Formulaire de demande</p>
       <h3 class="f-titre" data-en="Tell us about your production">Décrivez votre production</h3>
       <p class="petit" data-en="Fields marked with an asterisk are required.">Les champs marqués d'un astérisque sont obligatoires.</p>
@@ -286,5 +383,5 @@
     <p class="demo si-exemples" data-bloc="demo">Version de démonstration, non publiée. Les mentions <span class="ex">exemple</span> sont à confirmer par le propriétaire.</p>
   </div>
 </footer>
-<script src="infos.js" defer></script><script src="js/commun.js" defer></script><script src="js/accueil.js" defer></script><script src="js/mur.js" defer></script><script src="js/sequences.js" defer></script><script src="js/film.js" defer onerror="document.documentElement.classList.remove('film','attente')"></script></body>
+<script src="infos.js" defer></script><script src="js/commun.js" defer></script><script src="js/accueil.js" defer></script><script src="js/mur.js" defer></script><script src="js/sequences.js" defer></script><script src="js/trajet.js" defer></script><script src="js/film.js" defer onerror="document.documentElement.classList.remove('film','attente')"></script></body>
 </html>

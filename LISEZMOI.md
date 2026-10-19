@@ -10,7 +10,10 @@ Site statique : aucun serveur, aucune base de données, aucun pistage.
   lieu de tournage, formulaire de demande.
 - `confidentialite.html` (Loi 25), `404.html`.
 - `infos.js` : **toutes les informations modifiables** (heures, prix, téléphone, courriel, fiche technique, tournages passés).
-- `js/film.js`, `styles/film.css` : le film. `js/commun.js`, `js/accueil.js`, `js/mur.js`, `styles/commun.css`, `styles/accueil.css` : le reste.
+- `js/film.js`, `styles/film.css` : le film.
+- `styles/themes.css` : les vrais post-it, le geste de défilement (main sur téléphone, souris sur ordinateur) et le
+  design de chaque thème : vitrine (heures), tableau à lettres (prix), mur de post-it, trajet horizontal sur le plan,
+  clap, pellicule et scénario (tournage), ticket (demande). `js/trajet.js` : le trajet et la pellicule au défilement. `js/commun.js`, `js/accueil.js`, `js/mur.js`, `styles/commun.css`, `styles/accueil.css` : le reste.
 - `assets/<séquence>/NNN.webp` : les images du film. `js/sequences.js` : le nombre d'images par séquence.
 
 ## Avant la mise en ligne finale (avec le propriétaire)

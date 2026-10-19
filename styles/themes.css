@@ -1,0 +1,259 @@
+/*
+  Chez Bobette — version 18 : les vrais post-it, le geste de défilement, et un objet de la buanderie par thème.
+    Heures            l'affiche de la vitrine (verre sombre, lettrage vinyle blanc)
+    Prix              le tableau à lettres en feutre noir, cadre de bois
+    Bon à savoir      le mur de post-it, chacun écrit par une main différente
+    Pour venir        le trajet, en parcours horizontal sur un plan dessiné du quartier (js/trajet.js)
+    Lieu de tournage  le clap, la pellicule, le scénario, la feuille de service
+    Demande           le ticket de dépôt
+  Les titres de section sont des rubans d'étiqueteuse (lettres en relief), comme sur les machines.
+*/
+@font-face{font-family:"Caveat";src:url(../assets/fonts/caveat.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Gochi Hand";src:url(../assets/fonts/gochi-hand.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"Kalam";src:url(../assets/fonts/kalam.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Kalam";src:url(../assets/fonts/kalam-gras.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Reenie Beanie";src:url(../assets/fonts/reenie-beanie.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"Nanum Pen";src:url(../assets/fonts/nanum-pen.woff2) format("woff2");font-display:swap}
+
+:root{
+  /* cinq mains différentes, comme sur un vrai mur de buanderie */
+  --m-feutre:"Caveat","Permanent Marker",cursive;
+  --m-stylo:"Gochi Hand","Comic Sans MS",cursive;
+  --m-propre:"Kalam","Comic Sans MS",cursive;
+  --m-crayon:"Reenie Beanie","Comic Sans MS",cursive;
+  --m-fin:"Nanum Pen","Comic Sans MS",cursive;
+  --pi-jaune:#fff07a; --pi-rose:#ff9cc8; --pi-bleu:#9ad6ff; --pi-vert:#c6f08c; --pi-orange:#ffbd6e;
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .35 0 0 0 0 .15 0 0 0 .13 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ============ le post-it ============
+   Collé par le haut seulement : le bas se soulève (ombre portée en bas, coin droit qui rebique),
+   la bande adhésive est un peu plus brillante, le papier a du grain. Pas de ruban, pas de coins arrondis. */
+.pi,.theme .postits li{--pc:var(--pi-jaune);position:relative;color:#2a2318;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.38),rgba(255,255,255,0) 16%),
+    radial-gradient(110% 70% at 100% 100%,rgba(90,60,0,.16),rgba(90,60,0,0) 42%),
+    linear-gradient(178deg,rgba(0,0,0,0) 55%,rgba(110,80,0,.08)),
+    var(--grain),
+    var(--pc);
+  border-radius:0 0 26px 2px/0 0 5px 2px;
+  box-shadow:0 1px 1px rgba(0,0,0,.14),0 22px 16px -14px rgba(40,20,0,.5),10px 26px 18px -18px rgba(40,20,0,.35);
+  transform:perspective(700px) rotate(var(--r,-1.5deg)) rotateX(3deg)}
+.pi-jaune{--pc:var(--pi-jaune)} .pi-rose{--pc:var(--pi-rose)} .pi-bleu{--pc:var(--pi-bleu)} .pi-vert{--pc:var(--pi-vert)} .pi-orange{--pc:var(--pi-orange)}
+
+/* ============ le geste : une main qui fait défiler un téléphone, ou une souris dont la molette tourne ============ */
+.geste{display:block;flex:none;width:var(--gw,64px);aspect-ratio:80/104}
+.geste svg{display:block;width:100%;height:100%;overflow:visible}
+.g-souris{display:none!important}
+@media (hover:hover) and (pointer:fine){ .g-main{display:none!important} .g-souris{display:block!important} }
+.g-tel{fill:#fffdf6;stroke:#2a2318;stroke-width:3.2}
+.g-lignes rect{fill:#d6ccb8}
+.g-lignes rect:nth-child(3n+1){fill:#9fb7d9}
+.g-paume{fill:#ffd7b5;stroke:#2a2318;stroke-width:2.8;stroke-linejoin:round;stroke-linecap:round}
+.g-tap{fill:rgba(27,111,208,.4)}
+/* le doigt se pose en bas de l'écran, appuie, remonte (la page descend), se lève et revient : le vrai geste */
+.g-doigt{animation:g-doigt 2.4s cubic-bezier(.45,0,.25,1) infinite}
+.g-lignes{animation:g-lignes 2.4s cubic-bezier(.45,0,.25,1) infinite}
+.g-tap{transform-box:fill-box;transform-origin:50% 50%;animation:g-tap 2.4s ease-out infinite}
+@keyframes g-doigt{0%{transform:translate(4px,10px);opacity:0}14%{transform:translate(0,0);opacity:1}22%{transform:translate(0,1px) scale(.98)}64%{transform:translate(0,-35px) scale(.98)}76%{transform:translate(3px,-40px);opacity:0}100%{transform:translate(4px,10px);opacity:0}}
+@keyframes g-lignes{0%,22%{transform:translateY(0)}64%,100%{transform:translateY(-36px)}}
+@keyframes g-tap{0%,16%{opacity:0;transform:scale(.3)}24%{opacity:1;transform:scale(1)}64%{opacity:.7;transform:scale(.9)}72%,100%{opacity:0;transform:scale(1.4)}}
+.g-corps{fill:#fffdf6;stroke:#2a2318;stroke-width:3.2}
+.g-raie{stroke:#2a2318;stroke-width:2.4}
+.g-roue{fill:#2a2318;animation:g-roue 1.6s ease-in-out infinite}
+.g-fleche{fill:none;stroke:#2a2318;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;animation:g-fleche 1.6s ease-in-out infinite}
+.g-fleche.f2{animation-delay:.18s}
+@keyframes g-roue{0%{transform:translateY(0);opacity:1}60%{transform:translateY(9px);opacity:0}61%{transform:translateY(-2px);opacity:0}100%{transform:translateY(0);opacity:1}}
+@keyframes g-fleche{0%,100%{transform:translateY(-3px);opacity:.25}50%{transform:translateY(4px);opacity:1}}
+@media (prefers-reduced-motion:reduce){ .g-doigt,.g-lignes,.g-tap,.g-roue,.g-fleche{animation:none} }
+
+/* le post-it « Défilez pour entrer » du premier écran */
+.hero .e-visite{--r:-2.2deg;display:grid;grid-template-columns:auto 1fr;align-items:end;gap:8px 10px;padding:14px 12px 14px;color:#2a2318;transform:perspective(700px) rotate(var(--r)) rotateX(3deg)}
+.hero .e-visite .e-titre{grid-column:1/-1;min-height:0;font:700 26px/1 var(--m-feutre)}
+.hero .e-visite .e-titre small{font:400 17px/1.15 var(--m-stylo);margin-top:5px}
+.hero .e-visite .geste{--gw:78px;margin:-2px 0 -4px -2px}
+.hero .e-visite .e-go{justify-self:start;align-self:center;min-height:44px;padding:8px 12px;box-shadow:0 4px 0 #9a3d68}
+.hero .e-tournage{--r:1.8deg}
+.hero .e-tournage .e-titre{font:700 25px/1 var(--m-feutre)}
+.hero .e-tournage .e-titre small{font:400 18px/1.15 var(--m-propre)}
+.h-heures .c-heures{font-family:var(--m-propre)}
+
+/* pendant le film : le post-it qui montre le geste */
+.film .pupitre .v-defile{--r:-3deg;display:inline-flex;align-items:center;gap:8px;min-height:0;padding:6px 14px 6px 8px;font:700 24px/1 var(--m-feutre);box-shadow:0 1px 1px rgba(0,0,0,.14),0 16px 12px -10px rgba(40,20,0,.45)}
+.film .pupitre .v-defile .geste{--gw:46px}
+.film .pupitre .v-defile i{display:none}
+
+/* ============ rythme : chaque thème a son écran, rien n'est tassé ============ */
+.film .parcours{height:1300svh}
+.theme{position:relative;padding:clamp(72px,14svh,160px) 0;overflow-x:clip}
+.theme+.theme{padding-top:clamp(40px,8svh,100px)}
+
+/* les titres : rubans d'étiqueteuse, lettres en relief */
+.titre-ruban{display:inline-block;margin:0 0 34px;padding:10px 18px 9px;background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(0,0,0,.12)),var(--b-rouge);
+  color:#fff;font:800 clamp(24px,6vw,40px)/1 var(--f-lcd);letter-spacing:.14em;text-transform:uppercase;
+  text-shadow:0 1px 0 rgba(0,0,0,.35),0 -1px 0 rgba(255,255,255,.35);border-radius:3px;
+  box-shadow:0 2px 0 rgba(0,0,0,.25),0 10px 18px rgba(40,20,0,.3);transform:rotate(-1.6deg)}
+.titre-ruban.bleu{background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(0,0,0,.12)),var(--b-bleu)}
+
+/* ============ 1. heures : l'affiche de la vitrine ============ */
+.vitrine{position:relative;max-width:640px;margin:0 auto;padding:28px 22px 26px;border-radius:14px;color:#fff;
+  background:linear-gradient(115deg,rgba(255,255,255,.14) 0 18%,rgba(255,255,255,0) 18.5% 34%,rgba(255,255,255,.07) 34.5% 40%,rgba(255,255,255,0) 40.5%),
+    linear-gradient(180deg,#1d2a35,#0e161d);
+  border:10px solid #2b2b2b;box-shadow:inset 0 0 0 2px #5b5b5b,inset 0 0 40px rgba(0,0,0,.6),0 24px 40px rgba(30,15,5,.45)}
+.vitrine::before,.vitrine::after{content:"";position:absolute;top:-22px;width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 40% 35%,rgba(255,255,255,.7),rgba(220,230,240,.25) 60%,rgba(200,210,220,.15));box-shadow:0 2px 4px rgba(0,0,0,.3)}
+.vitrine::before{left:22%} .vitrine::after{right:22%}
+.v-entete{margin:0 0 10px;font:700 14px/1 var(--f-lcd);letter-spacing:.24em;text-transform:uppercase;opacity:.7}
+.v-titre{margin:0 0 18px;font:800 clamp(34px,9vw,58px)/.95 var(--f-texte);font-stretch:75%;text-transform:uppercase;letter-spacing:.01em}
+.v-statut{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0 0 22px;font:600 18px/1.2 var(--f-texte)}
+.v-pastille{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 10px;border:2px solid currentColor;border-radius:999px;color:#62f5a8;font:400 26px/1 var(--f-neon);text-shadow:0 0 8px rgba(98,245,168,.8)}
+.v-pastille::before{content:"";width:12px;height:12px;border-radius:50%;background:currentColor;box-shadow:0 0 10px currentColor}
+.vitrine[data-etat="ferme"] .v-pastille{color:#ff6b62;text-shadow:0 0 8px rgba(255,107,98,.8)}
+.v-heures{width:100%;border-collapse:collapse}
+.v-heures th,.v-heures td{padding:14px 0;border-top:2px solid rgba(255,255,255,.18);font-size:18px}
+.v-heures th{text-align:left;font-weight:500}
+.v-heures td{text-align:right;font:800 clamp(24px,6vw,34px)/1 var(--f-texte);font-stretch:85%;white-space:nowrap}
+.v-note{margin:16px 0 0;font:400 22px/1.25 var(--m-stylo);color:#fff3a8;transform:rotate(-1deg)}
+.vitrine .ex{vertical-align:middle}
+
+/* ============ 2. prix : le tableau à lettres ============ */
+#prix .contenu{display:grid;justify-items:center}
+.tableau{width:min(680px,100%);padding:22px 18px 18px;border:14px solid #7a4a24;border-radius:6px;color:#f7f4ec;
+  background:repeating-linear-gradient(180deg,#161616 0 5px,#232323 5px 7px);
+  border-image:linear-gradient(135deg,#a06a38,#6b3f1c 40%,#8e5a2c 70%,#5b3416) 1;
+  box-shadow:inset 0 0 30px rgba(0,0,0,.8),0 26px 40px rgba(30,15,5,.45)}
+.tableau .l-tarifs{display:grid;gap:4px;margin:0;padding:0;list-style:none}
+.tableau .l-tarifs li{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;padding:10px 4px;min-height:0;background:none;box-shadow:none;border:0;transform:none;color:inherit}
+.tableau .l-tarifs li:nth-child(2){transform:translateX(3px) rotate(.4deg)}
+.tableau .l-tarifs li:nth-child(4){transform:rotate(-.5deg)}
+.tableau .t-nom,.tableau .t-prix{font:700 clamp(19px,4.8vw,30px)/1.1 var(--f-texte)!important;font-stretch:80%!important;letter-spacing:.07em;text-transform:uppercase;color:#f7f4ec!important;font-style:normal!important;
+  text-shadow:0 1px 0 #000,0 0 1px rgba(255,255,255,.5)}
+.tableau .t-nom{flex:1 1 9em;display:flex;align-items:baseline;gap:10px;min-width:0}
+.tableau .t-nom::after{content:"";flex:1;min-width:16px;border-bottom:3px dotted rgba(247,244,236,.45);transform:translateY(-5px)}
+.tableau .t-nom small{display:none}
+.tableau .t-prix{margin-left:auto;text-align:right;color:#ffe06a!important}
+.tableau .ex{text-shadow:none;letter-spacing:0;text-transform:none}
+.t-pied{margin:14px 0 0;padding-top:12px;border-top:2px solid rgba(247,244,236,.18);font:700 14px/1.3 var(--f-lcd);letter-spacing:.12em;text-transform:uppercase;text-align:center;color:rgba(247,244,236,.75)}
+
+/* ============ 3. bon à savoir : le mur de post-it ============ */
+#savoir .contenu{display:grid;justify-items:center}
+.titre-pi{--r:-3deg;margin:0 0 34px;padding:16px 26px 18px;font:700 clamp(36px,9vw,54px)/1 var(--m-feutre)}
+.theme .postits{display:grid;grid-template-columns:1fr 1fr;gap:26px 18px;width:100%;max-width:980px;margin:0;padding:0;list-style:none}
+.theme .postits li{position:relative;min-height:150px;padding:18px 16px 20px;font-size:inherit;line-height:1.25;transform:perspective(700px) rotate(var(--r)) rotateX(3deg)}
+.theme .postits li:nth-child(5n+1){--pc:var(--pi-jaune);--r:-2.5deg}
+.theme .postits li:nth-child(5n+2){--pc:var(--pi-bleu);--r:2deg;margin-top:18px}
+.theme .postits li:nth-child(5n+3){--pc:var(--pi-vert);--r:1.2deg}
+.theme .postits li:nth-child(5n+4){--pc:var(--pi-rose);--r:-1.6deg;margin-top:14px}
+.theme .postits li:nth-child(5n+5){--pc:var(--pi-orange);--r:3deg;grid-column:1/-1;justify-self:center;width:min(62%,280px)}
+.theme .postits h3{margin:0 0 8px;font:700 28px/1 var(--m-feutre)}
+.theme .postits p{margin:0}
+/* chaque post-it a sa main */
+.theme .postits li:nth-child(5n+1) p{font:400 22px/1.2 var(--m-stylo)}
+.theme .postits li:nth-child(5n+2) h3{font:700 26px/1 var(--m-propre)}
+.theme .postits li:nth-child(5n+2) p{font:400 21px/1.25 var(--m-propre)}
+.theme .postits li:nth-child(5n+3) h3{font:400 30px/1 var(--f-feutre)}
+.theme .postits li:nth-child(5n+3) p{font:400 29px/1 var(--m-crayon)}
+.theme .postits li:nth-child(5n+4) h3{font:400 34px/1 var(--m-fin)}
+.theme .postits li:nth-child(5n+4) p{font:400 27px/1.05 var(--m-fin)}
+.theme .postits li:nth-child(5n+5) h3{font:400 28px/1 var(--m-stylo);text-decoration:underline wavy rgba(42,35,24,.5) 2px;text-underline-offset:5px}
+.theme .postits li:nth-child(5n+5) p{font:700 24px/1.1 var(--m-feutre)}
+.theme .postits .ex{font-family:var(--f-texte)}
+.theme .postits li.tenu{box-shadow:0 2px 2px rgba(0,0,0,.18),0 34px 30px -16px rgba(40,20,0,.5)}
+
+/* ============ 4. pour venir : le parcours horizontal ============ */
+.t-trajet{padding-bottom:0}
+.trajet{position:relative}
+.tr-scene{display:grid;gap:18px;width:min(1180px,100% - 2*var(--marge));margin:0 auto;padding-bottom:40px}
+.tr-tete{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px}
+.tr-tete .titre-ruban{margin:0}
+.tr-adr{margin:0;padding:6px 12px;background:var(--papier);box-shadow:var(--ombre);font:800 18px/1.2 var(--f-texte);transform:rotate(1deg)}
+.tr-adr span{font-weight:500}
+.tr-cadre{position:relative;overflow-x:auto;overflow-y:hidden;border:8px solid #fffdf6;border-radius:4px;background:#f6efdf;box-shadow:var(--ombre);-webkit-overflow-scrolling:touch}
+.carte{display:block;height:clamp(260px,48svh,520px);width:auto;max-width:none}
+.tr-rues text{font:400 30px/1 var(--m-propre);fill:#6a5a46}
+.tr-rues .tr-duluth{font:700 34px/1 var(--m-propre);fill:#8a5a00}
+.tr-rues .tr-parc{font:700 40px/1 var(--m-feutre);fill:#3d6b2a}
+.tr-metro{font:800 28px/1 var(--f-texte);fill:#1b4fb5}
+.tr-ici{font:700 26px/1 var(--m-feutre);fill:#fff}
+.tr-chemin-fond{fill:none;stroke:rgba(200,38,31,.18);stroke-width:12;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:2 20}
+.tr-chemin{fill:none;stroke:#c8261f;stroke-width:12;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:2 20}
+.tr-etapes{display:grid;gap:18px;margin:0;padding:0;list-style:none}
+.tr-etapes li{display:flex;align-items:flex-start;gap:12px;padding:14px 16px 16px;font:400 22px/1.2 var(--m-stylo)}
+.tr-etapes li:nth-child(even){--r:1.5deg;font-family:var(--m-propre);font-size:20px}
+.tr-etapes b{flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#2a2318;color:#fff;font:700 17px/1 var(--f-lcd)}
+.tr-acts{display:flex;flex-wrap:wrap;gap:12px}
+.tr-note{margin:0;font-size:14px;color:#3b3229;background:rgba(248,243,231,.85);justify-self:start;padding:4px 8px}
+
+/* animé (js/trajet.js) : la scène reste à l'écran, le plan glisse vers la gauche et le trajet se dessine */
+.trajet-anime .trajet{height:330svh}
+.trajet-anime .tr-scene{position:sticky;top:var(--entete);height:calc(100svh - var(--entete) - var(--bas));grid-template-rows:auto minmax(0,1fr) auto auto;align-content:center;gap:14px;padding:16px 0 18px}
+.trajet-anime .tr-cadre{overflow:hidden;min-height:0}
+.trajet-anime .carte{position:absolute;left:0;top:0;height:auto;transform-origin:0 0;will-change:transform}
+.trajet-anime .tr-etapes{grid-template-columns:1fr;gap:0}
+.trajet-anime .tr-etapes li{grid-area:1/1;opacity:0;transform:perspective(700px) rotate(var(--r,-1.5deg)) rotateX(3deg) translateY(14px);transition:opacity .3s,transform .3s}
+.trajet-anime .tr-etapes li.on{opacity:1;transform:perspective(700px) rotate(var(--r,-1.5deg)) rotateX(3deg)}
+.trajet-anime .tr-note{display:none}
+
+/* ============ 5. lieu de tournage ============ */
+.clap{max-width:760px;margin:0 auto 26px}
+.clap-barre{height:46px;margin:0 6px -2px;border-radius:6px 6px 0 0;background:repeating-linear-gradient(-55deg,#f7f4ec 0 26px,#141414 26px 52px);border:4px solid #141414;transform-origin:4% 100%;transform:rotate(-7deg);box-shadow:0 8px 14px rgba(0,0,0,.25)}
+.clap-ardoise{padding:22px 20px 18px;border-radius:8px;background:linear-gradient(170deg,#262626,#151515);color:#f7f4ec;box-shadow:0 24px 40px rgba(30,15,5,.45)}
+.clap-titre{margin:0 0 16px;font:800 clamp(36px,10vw,72px)/.92 var(--f-texte);font-stretch:72%;text-transform:uppercase}
+.clap-cases{display:grid;grid-template-columns:repeat(3,1fr);margin:0;border:2px solid rgba(247,244,236,.7)}
+.clap-cases div{padding:8px 10px;border-left:2px solid rgba(247,244,236,.7)}
+.clap-cases div:first-child{border-left:0}
+.clap-cases dt{font:700 12px/1 var(--f-lcd);letter-spacing:.14em;text-transform:uppercase;opacity:.7}
+.clap-cases dd{margin:6px 0 0;font:700 22px/1 var(--m-feutre)}
+.clap-texte{max-width:640px;margin:0 auto;padding:16px 18px;background:var(--papier);box-shadow:var(--ombre);font-size:17px;line-height:1.55}
+
+/* la pellicule : les photos défilent de côté quand on descend */
+.bande{position:relative;margin:clamp(40px,8svh,80px) 0;padding:30px 0;background:#141414;overflow:hidden;box-shadow:0 20px 34px rgba(30,15,5,.4);transform:rotate(-1.2deg)}
+.bande::before,.bande::after{content:"";position:absolute;left:0;right:0;height:14px;background:repeating-linear-gradient(90deg,transparent 0 12px,#e9e1cf 12px 26px,transparent 26px 38px);opacity:.9}
+.bande::before{top:8px} .bande::after{bottom:8px}
+.pellicule{display:flex;gap:14px;width:max-content;margin:0;padding:0 var(--marge);list-style:none;transform:translateX(var(--x,0px));will-change:transform}
+.pellicule li{flex:none;width:clamp(230px,62vw,420px)}
+.pellicule .polaroid{display:block;padding:0;background:none;box-shadow:none;transform:none!important;color:#e9e1cf;text-decoration:none}
+.pellicule img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:2px;background:#333}
+.pellicule span{display:block;padding-top:8px;font:700 13px/1.2 var(--f-lcd);letter-spacing:.1em;text-transform:uppercase}
+@media (hover:none){ .bande{overflow-x:auto} }
+
+.g-plateau{display:grid;gap:34px}
+.scenario{position:relative;padding:28px 22px 26px;background:#fffdf8;color:#1f1b18;box-shadow:var(--ombre);font-family:var(--f-lcd);transform:rotate(.6deg)}
+.scenario::before{content:"1.";position:absolute;top:14px;right:18px;font:500 14px/1 var(--f-lcd)}
+.sc-tete{margin:0 0 18px;font:700 14px/1 var(--f-lcd);letter-spacing:.14em;text-transform:uppercase;text-align:center;text-decoration:underline}
+.sc-scene+.sc-scene{margin-top:20px}
+.sc-scene h3{margin:0 0 6px;font:800 16px/1.3 var(--f-lcd);letter-spacing:.02em}
+.sc-scene p{margin:0;font:400 15px/1.55 var(--f-lcd)}
+.f-service{display:grid;gap:12px;align-content:start}
+.f-service .fiche{margin:0}
+.f-service .fiche>div{display:flex;justify-content:space-between;align-items:baseline;gap:4px 16px;flex-wrap:wrap;padding:10px 0;border-bottom:1px dashed var(--trait)}
+.f-service .fiche dt{font-weight:700}
+.f-service .fiche dd{margin-left:auto;text-align:right}
+.f-service .a-conf{font:400 20px/1.1 var(--m-stylo);color:var(--encre-2)}
+.f-service>.btn{justify-self:start;margin-top:6px}
+
+/* ============ 6. demande : le ticket de dépôt ============ */
+.ticket{position:relative;padding:22px 20px 26px 30px;background:linear-gradient(180deg,rgba(255,255,255,.3),rgba(255,255,255,0) 30%),#fff6d8;color:#1f1b18;box-shadow:var(--ombre)}
+.ticket::before{content:"";position:absolute;top:0;bottom:0;left:0;width:14px;background:radial-gradient(circle at 0 50%,transparent 5px,#fff6d8 5.5px) 0 0/14px 18px repeat-y}
+.ticket::after{content:"";position:absolute;top:10px;bottom:10px;left:16px;border-left:2px dashed rgba(122,74,36,.4)}
+.ticket-tete{display:flex;justify-content:space-between;align-items:center;margin:-4px 0 4px;padding-bottom:10px;border-bottom:2px solid #1f1b18;font:800 15px/1 var(--f-lcd);letter-spacing:.12em;text-transform:uppercase}
+.ticket-no{color:var(--b-rouge);font-size:18px}
+
+/* ============ tablette et ordinateur ============ */
+@media (min-width:640px){
+  .theme .postits{grid-template-columns:repeat(3,1fr);gap:34px 26px}
+  .theme .postits li:nth-child(5n+5){grid-column:auto;width:auto}
+  .theme .postits li:nth-child(5n+4){grid-column:1/2}
+  .g-plateau{grid-template-columns:6fr 5fr;align-items:start}
+  .vitrine{padding:40px 44px 36px}
+  .tableau{padding:30px 34px 24px}
+}
+@media (min-width:900px) and (min-height:600px){
+  .theme .postits{grid-template-columns:repeat(5,1fr)}
+  .theme .postits li:nth-child(5n+4){grid-column:auto}
+  .theme .postits li{min-height:200px}
+  .trajet-anime .tr-scene{grid-template:"tete tete" auto "carte carte" minmax(0,1fr) "etapes acts" auto/minmax(0,1fr) auto;column-gap:30px}
+  .trajet-anime .tr-tete{grid-area:tete} .trajet-anime .tr-cadre{grid-area:carte} .trajet-anime .tr-etapes{grid-area:etapes;max-width:560px} .trajet-anime .tr-acts{grid-area:acts;align-self:center}
+  .hero .e-visite .geste{--gw:84px}
+  .hero .e-visite .e-titre{font-size:34px}
+  .film .pupitre .v-defile .geste{--gw:56px}
+}
