@@ -173,7 +173,9 @@
     taille();
     afficher(0);
     demander();
-    chargerDebut().catch(liberer);
+    // les images du film attendent que le premier écran (papier peint, lettres, polices) soit chargé : pas de bousculade
+    if (document.readyState === "complete") chargerDebut().catch(liberer);
+    else window.addEventListener("load", () => chargerDebut().catch(liberer), { once: true });
   } catch (e) {
     versionFixe();
   }
