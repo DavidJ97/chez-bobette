@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr-CA">
 <head>
 <meta charset="utf-8">
@@ -24,7 +24,7 @@
 <!-- Met la page en mode « film » avant le premier affichage ; js/film.js la remet en version fixe s'il ne peut pas démarrer. -->
 <script src="js/avant.js"></script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23120e0d'/%3E%3Ccircle cx='32' cy='32' r='20' fill='none' stroke='%234dffa0' stroke-width='5'/%3E%3Ccircle cx='32' cy='32' r='9' fill='%23ff5fa8'/%3E%3C/svg%3E">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"DryCleaningOrLaundry","name":"Chez Bobette","address":{"@type":"PostalAddress","streetAddress":"850, avenue Duluth Est","addressLocality":"Montréal","addressRegion":"QC","addressCountry":"CA"}}</script>
+<script type="application/ld+json" id="fiche">{"@context":"https://schema.org","@type":"DryCleaningOrLaundry","name":"Chez Bobette","address":{"@type":"PostalAddress","streetAddress":"850, avenue Duluth Est","addressLocality":"Montréal","addressRegion":"QC","addressCountry":"CA"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"23:00"}]}</script>
 </head>
 <body>
 <a class="saut" href="#infos" data-en="Skip to hours and prices">Aller aux heures et aux prix</a>
@@ -51,7 +51,7 @@
     <a class="btn" href="#tournages" data-en="Filming location">Lieu de tournage</a>
     <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=850%2C%20avenue%20Duluth%20Est%2C%20Montr%C3%A9al%2C%20QC" data-lien="carte" data-en="Directions">Itinéraire</a>
   </nav>
-  <a class="e-tel" href="tel:+15145222612" data-lien="tel"><bdi data-bloc="tel">514 522-2612 <span class="ex">exemple</span></bdi></a>
+  <a class="e-tel" href="tel:+15145222612" data-lien="tel"><bdi data-bloc="tel">514 522‑2612 <span class="ex">exemple</span></bdi></a>
   <a class="btn btn-vert" href="#contact" data-en="Book a shoot">Réserver un tournage</a>
   <button class="langue" type="button" lang="en" aria-label="EN, switch to English">EN</button>
 </header>
@@ -291,7 +291,7 @@
     <p class="clap-texte" data-en="The laundromat, its storefront and the lane beside it can be rented for films, series, commercials, music videos and photo shoots. Your request goes straight to the owner.">La buanderie, sa façade et la ruelle voisine se louent pour des films, des séries, des publicités, des vidéoclips et des séances photo. Votre demande arrive directement au propriétaire.</p>
   </div>
 
-  <div class="bande" aria-label="Photos du lieu" data-en-aria="Photos of the location">
+  <section class="bande" aria-label="Photos du lieu" data-en-aria="Photos of the location">
     <ul class="pellicule" aria-label="Photos du lieu" data-en-aria="Photos of the location">
         <li><a class="polaroid" href="assets/img/fb5654e97e.webp"><img src="assets/img/fb5654e97e.webp" width="720" height="540" loading="lazy" decoding="async" alt="La façade en brique, de jour, avec l'enseigne colorée et la ruelle à droite." data-en-alt="The brick storefront by day, with the colourful sign and the lane on the right."><span data-en="Ext. storefront, day">Ext. façade, de jour</span></a></li>
         <li><a class="polaroid" href="assets/img/299747941c.webp"><img src="assets/img/299747941c.webp" width="720" height="540" loading="lazy" decoding="async" alt="La ruelle bordée d'arbres, le long du mur de brique." data-en-alt="The tree-lined lane along the brick wall."><span data-en="Ext. lane">Ext. ruelle</span></a></li>
@@ -300,7 +300,7 @@
         <li><a class="polaroid" href="assets/img/7c68f6b453.webp"><img src="assets/img/7c68f6b453.webp" width="720" height="540" loading="lazy" decoding="async" alt="Le long comptoir courbe et ses fauteuils, le long de la vitrine." data-en-alt="The long curved counter and its chairs along the window."><span data-en="Int. the counter, wide">Int. le comptoir, plan large</span></a></li>
         <li><a class="polaroid" href="assets/img/7da8be2a65.webp"><img src="assets/img/7da8be2a65.webp" width="720" height="540" loading="lazy" decoding="async" alt="Le comptoir vu de près, avec la rue en reflet dans la vitrine." data-en-alt="The counter up close, with the street reflected in the window."><span data-en="Int. window side">Int. côté vitrine</span></a></li>
       </ul>
-  </div>
+  </section>
 
   <div class="contenu g-plateau">
     <div class="scenario">
@@ -324,22 +324,22 @@
       <div class="plaque"><h2 class="neon vert" id="t-contact" data-en="Filming request">Demande de tournage</h2></div>
       <div class="affichette a-tel">
         <h3 class="feutre" data-en="By phone">Par téléphone</h3>
-        <p class="gros-tel"><a href="tel:+15145222612" data-lien="tel"><bdi data-bloc="tel">514 522-2612 <span class="ex">exemple</span></bdi></a></p>
+        <p class="gros-tel"><a href="tel:+15145222612" data-lien="tel"><bdi data-bloc="tel">514 522‑2612 <span class="ex">exemple</span></bdi></a></p>
         <p class="petit" data-en="For the laundromat or for a shoot. Tear off a tab to call.">Pour la buanderie comme pour un tournage. Arrachez une languette pour appeler.</p>
-        <div class="languettes" id="languettes" aria-hidden="true"><button type="button" class="languette" tabindex="-1"><span class="l-nom">Chez Bobette</span><bdi data-bloc="telNu">514 522-2612</bdi></button><span class="languette partie"></span><button type="button" class="languette" tabindex="-1"><span class="l-nom">Chez Bobette</span><bdi data-bloc="telNu">514 522-2612</bdi></button><button type="button" class="languette" tabindex="-1"><span class="l-nom">Chez Bobette</span><bdi data-bloc="telNu">514 522-2612</bdi></button><button type="button" class="languette" tabindex="-1"><span class="l-nom">Chez Bobette</span><bdi data-bloc="telNu">514 522-2612</bdi></button><span class="languette partie"></span><button type="button" class="languette" tabindex="-1"><span class="l-nom">Chez Bobette</span><bdi data-bloc="telNu">514 522-2612</bdi></button><button type="button" class="languette" tabindex="-1"><span class="l-nom">Chez Bobette</span><bdi data-bloc="telNu">514 522-2612</bdi></button></div>
+        <div class="languettes" id="languettes" aria-hidden="true"><button type="button" class="languette" tabindex="-1"><span class="l-nom">Chez Bobette</span><bdi data-bloc="telNu">514 522‑2612</bdi></button><span class="languette partie"></span><button type="button" class="languette" tabindex="-1"><span class="l-nom">Chez Bobette</span><bdi data-bloc="telNu">514 522‑2612</bdi></button><button type="button" class="languette" tabindex="-1"><span class="l-nom">Chez Bobette</span><bdi data-bloc="telNu">514 522‑2612</bdi></button><button type="button" class="languette" tabindex="-1"><span class="l-nom">Chez Bobette</span><bdi data-bloc="telNu">514 522‑2612</bdi></button><span class="languette partie"></span><button type="button" class="languette" tabindex="-1"><span class="l-nom">Chez Bobette</span><bdi data-bloc="telNu">514 522‑2612</bdi></button><button type="button" class="languette" tabindex="-1"><span class="l-nom">Chez Bobette</span><bdi data-bloc="telNu">514 522‑2612</bdi></button></div>
         <p class="l-indice" aria-hidden="true" data-en="Pull one!">Tirez-en une !</p>
       </div>
     </div>
     <form class="ticket formulaire" id="form" name="tournage" method="POST" data-netlify="true" netlify-honeypot="adresse-web" novalidate>
       <input type="hidden" name="form-name" value="tournage">
-      <p class="piege"><label>Ne pas remplir <input name="adresse-web" tabindex="-1" autocomplete="off"></label></p>
+      <p class="piege"><label>Ne pas remplir <input type="text" name="adresse-web" tabindex="-1" autocomplete="off"></label></p>
       <div class="ticket-tete" aria-hidden="true"><span>Chez Bobette</span><span class="ticket-no">N° 0850</span></div>
       <p class="mono" data-en="Request form">Formulaire de demande</p>
       <h3 class="f-titre" data-en="Tell us about your production">Décrivez votre production</h3>
       <p class="petit" data-en="Fields marked with an asterisk are required.">Les champs marqués d'un astérisque sont obligatoires.</p>
       <div class="champs">
-        <div class="champ"><label for="f-nom"><span data-en="Name">Nom</span> *</label><input id="f-nom" name="nom" autocomplete="name" required aria-describedby="e-nom"><span class="err" id="e-nom"></span></div>
-        <div class="champ"><label for="f-prod" data-en="Production company">Maison de production</label><input id="f-prod" name="production" autocomplete="organization"></div>
+        <div class="champ"><label for="f-nom"><span data-en="Name">Nom</span> *</label><input type="text" id="f-nom" name="nom" autocomplete="name" required aria-describedby="e-nom"><span class="err" id="e-nom"></span></div>
+        <div class="champ"><label for="f-prod" data-en="Production company">Maison de production</label><input type="text" id="f-prod" name="production" autocomplete="organization"></div>
         <div class="champ"><label for="f-mail"><span data-en="Email">Courriel</span> *</label><input id="f-mail" name="courriel" type="email" autocomplete="email" inputmode="email" required aria-describedby="e-mail"><span class="err" id="e-mail"></span></div>
         <div class="champ"><label for="f-tel" data-en="Phone">Téléphone</label><input id="f-tel" name="telephone" type="tel" autocomplete="tel" inputmode="tel"></div>
         <fieldset class="champ large"><legend data-en="Project type">Type de projet</legend><div class="puces">
@@ -354,9 +354,9 @@
           <label class="puce"><input type="checkbox" name="espace" value="Façade"><span data-en="Storefront">Façade</span></label>
           <label class="puce"><input type="checkbox" name="espace" value="Ruelle"><span data-en="Lane">Ruelle</span></label>
         </div></fieldset>
-        <div class="champ large"><label for="f-dates" data-en="Target dates">Dates visées</label><input id="f-dates" name="dates" placeholder="Exemple : du 14 au 16 novembre, de nuit" data-en-ph="Example: November 14 to 16, at night"></div>
+        <div class="champ large"><label for="f-dates" data-en="Target dates">Dates visées</label><input type="text" id="f-dates" name="dates" placeholder="Exemple : du 14 au 16 novembre, de nuit" data-en-ph="Example: November 14 to 16, at night"></div>
         <div class="champ large"><label for="f-msg"><span data-en="Your project">Votre projet</span> *</label><textarea id="f-msg" name="message" rows="5" required aria-describedby="e-msg a-msg"></textarea><span class="petit" id="a-msg" data-en="Planned scenes, number of days, crew size, power needs, trucks.">Scènes prévues, nombre de jours, taille de l'équipe, besoins en électricité, camions.</span><span class="err" id="e-msg"></span></div>
-        <div class="champ large"><label class="accord" for="f-ok"><input type="checkbox" id="f-ok" name="consentement" value="oui" required aria-describedby="e-ok"><span><span data-en="I agree that my information is used only to answer this request.">J'accepte que mes renseignements servent uniquement à répondre à cette demande.</span> *</span></label><a class="lien-conf" href="confidentialite.html" data-en="Privacy policy">Politique de confidentialité</a><span class="err" id="e-ok"></span></div>
+        <div class="champ large"><label class="accord"><input type="checkbox" id="f-ok" name="consentement" value="oui" required aria-describedby="e-ok"><span><span data-en="I agree that my information is used only to answer this request.">J'accepte que mes renseignements servent uniquement à répondre à cette demande.</span> *</span></label><a class="lien-conf" href="confidentialite.html" data-en="Privacy policy">Politique de confidentialité</a><span class="err" id="e-ok"></span></div>
       </div>
       <button class="btn btn-encre" type="submit" id="envoyer" data-en="Send the request">Envoyer la demande</button>
       <div class="resultat" id="resultat" hidden tabindex="-1">

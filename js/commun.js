@@ -32,6 +32,7 @@
   function ex(o, lg) {
     return o && o.exemple ? ' <span class="ex">' + MOTS[lg].exemple + "</span>" : "";
   }
+  function insecable(t) { return String(t).replace(/ /g, "\u00a0").replace(/-/g, "\u2011"); }
   function minutes(hhmm) {
     const p = String(hhmm).split(":");
     return (+p[0]) * 60 + (+p[1] || 0);
@@ -129,8 +130,9 @@
     tournages: (B, lg) => !(B.tournages && B.tournages.length) ? "" :
       "<h4>" + MOTS[lg].dejaTourne + "</h4><ul>" + B.tournages.map(t =>
         "<li><b>" + esc(t.titre) + "</b> " + [v(t, "type", lg), esc(t.diffuseur), esc(t.annee)].filter(Boolean).join(" · ") + "</li>").join("") + "</ul>",
-    tel: (B, lg) => esc(B.telephone.valeur) + ex(B.telephone, lg),
-    telNu: B => esc(B.telephone.valeur),
+    // numéro affiché : espace et trait d'union insécables, pour qu'il ne se coupe jamais en fin de ligne
+    tel: (B, lg) => esc(insecable(B.telephone.valeur)) + ex(B.telephone, lg),
+    telNu: B => esc(insecable(B.telephone.valeur)),
     courriel: (B, lg) => esc(B.courriel.valeur) + ex(B.courriel, lg),
     adresse: (B, lg) => v(B, "adresse", lg),
     demo: (B, lg) => MOTS[lg].demo,
@@ -217,7 +219,21 @@
       b.setAttribute("lang", lg === "en" ? "fr" : "en");
     });
     suivis.forEach(f => f(lg));
+    fiche();
   };
+
+  // La fiche d'entreprise lue par Google (schema.org) : téléphone, heures et image, seulement s'ils sont confirmés.
+  function fiche() {
+    const el = document.getElementById("fiche");
+    if (!el) return;
+    const J = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const f = { "@context": "https://schema.org", "@type": "DryCleaningOrLaundry", name: "Chez Bobette",
+      url: location.origin + "/", image: new URL("assets/img/og.jpg", location.href).href,
+      address: { "@type": "PostalAddress", streetAddress: B.adresse, addressLocality: "Montréal", addressRegion: "QC", addressCountry: "CA" },
+      openingHoursSpecification: (B.heures || []).filter(r => !r.exemple).map(r => ({ "@type": "OpeningHoursSpecification", dayOfWeek: r.j.map(j => J[j]), opens: r.ouvre, closes: r.ferme })) };
+    if (!B.telephone.exemple) f.telephone = "+1-" + String(B.telephone.valeur).replace(/\D/g, "").replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
+    el.textContent = JSON.stringify(f);
+  }
 
   function demarrer() {
     document.querySelectorAll(".langue").forEach(b => b.addEventListener("click", () => {
