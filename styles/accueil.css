@@ -19,14 +19,14 @@ body{padding-bottom:calc(var(--barre) + env(safe-area-inset-bottom))}
 .guirlande{--h:calc((100vw - 2*var(--marge))/6.4);grid-column:1/-1;display:grid;gap:0;justify-items:start;pointer-events:none}
 .mot{display:flex}
 .mot+.mot{margin-top:2px}
-.lettre{position:relative;padding-top:16px;transform-origin:50% 0;pointer-events:auto;animation:balance 3.6s ease-in-out infinite alternate}
+.lettre{position:relative;padding-top:16px;transform-origin:50% 0;pointer-events:auto;will-change:transform;animation:balance 3.6s ease-in-out infinite alternate}
 .lettre:nth-child(2n){animation-duration:4.3s;animation-delay:-1.2s}
 .lettre:nth-child(3n){animation-duration:3.1s;animation-delay:-2.1s}
 /* la ficelle et son bout de ruban */
 .lettre::before{content:"";position:absolute;top:0;left:50%;width:2px;height:24px;margin-left:-1px;background:#4a3a2c}
 .lettre::after{content:"";position:absolute;top:-5px;left:50%;width:28px;height:12px;margin-left:-14px;background:rgba(240,230,190,.9);box-shadow:0 1px 2px rgba(0,0,0,.2);transform:rotate(-6deg)}
 .lettre:nth-child(even)::after{transform:rotate(5deg)}
-.lettre img{position:relative;width:auto;height:var(--h);max-width:none;filter:drop-shadow(0 9px 7px rgba(40,20,0,.38));user-select:none;-webkit-user-drag:none}
+.lettre img{position:relative;width:auto;height:calc(var(--h)*1.18);margin:calc(var(--h)*-.09);max-width:none;user-select:none;-webkit-user-drag:none}
 @keyframes balance{from{transform:rotate(-2.4deg)}to{transform:rotate(2.4deg)}}
 .hero>.langue{position:absolute;top:12px;right:var(--marge);z-index:2}
 
