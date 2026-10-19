@@ -13,42 +13,57 @@
   /* ---------- 1. les lettres ---------- */
   const guirlande = document.getElementById("guirlande");
   if (guirlande && !calme) {
-    const L = Array.from(guirlande.querySelectorAll(".lettre")).map((el, i) => {
-      el.style.animation = "none";
-      return { el, a: 0, v: (i % 2 ? 1 : -1) * 30, gain: 0.7 + ((i * 37) % 10) / 16, phase: i * 1.7, vitesse: 0.5 + ((i * 53) % 10) / 22, dessine: 99 };
-    });
-    let visible = true, penche = 0, dernierY = window.scrollY, dernier = 0, boucle = 0;
+    // Au repos, les lettres se balancent en CSS (animation « balance », gérée par la carte graphique, sans travail
+    // pour le processeur). Le défilement, la souris, un toucher ou l'appareil penché leur donnent une poussée :
+    // le pendule en JS prend alors la main, puis la rend au CSS quand le mouvement s'est calmé.
+    const L = Array.from(guirlande.querySelectorAll(".lettre")).map((el, i) => (
+      { el, a: 0, v: 0, gain: 0.7 + ((i * 37) % 10) / 16, dessine: 99 }));
+    let visible = true, penche = 0, dernierY = window.scrollY, dernier = 0, boucle = 0, actif = false, calmeDepuis = 0;
+    function prendre() {
+      if (actif) return;
+      actif = true;
+      L.forEach(l => { l.el.style.animation = "none"; l.a = 0; });
+    }
+    function rendre() {
+      actif = false;
+      L.forEach(l => { l.el.style.transform = ""; l.el.style.animation = ""; l.dessine = 99; });
+    }
     function tic(t) {
       boucle = 0;
       const dt = Math.min(0.033, (t - dernier) / 1000 || 0.016); dernier = t;
       const y = window.scrollY, pousse = Math.max(-60, Math.min(60, y - dernierY)); dernierY = y;
+      if (Math.abs(pousse) > 1) prendre();
+      if (!actif) return;
+      let energie = Math.abs(penche);
       for (const l of L) {
         l.v += pousse * 3.2 * l.gain;                                             // le défilement donne un coup
-        const brise = Math.sin(t / 1000 * l.vitesse + l.phase) * 10;              // un courant d'air
-        l.v += (-(l.a - penche) * 38 - l.v * 2.2 + brise) * dt;                    // ressort amorti : un pendule
+        l.v += (-(l.a - penche) * 38 - l.v * 2.2) * dt;                            // ressort amorti : un pendule
         l.a = Math.max(-26, Math.min(26, l.a + l.v * dt));
+        energie = Math.max(energie, Math.abs(l.a), Math.abs(l.v) / 10);
         if (Math.abs(l.a - l.dessine) > 0.02) { l.el.style.transform = "rotate(" + l.a.toFixed(2) + "deg)"; l.dessine = l.a; }
       }
+      // calmé depuis une demi-seconde : on rend la main au CSS
+      if (energie < 0.4) { if (!calmeDepuis) calmeDepuis = t; else if (t - calmeDepuis > 500) { rendre(); calmeDepuis = 0; return; } } else calmeDepuis = 0;
       if (visible && !document.hidden) boucle = requestAnimationFrame(tic);
     }
     const lancer = () => { if (!boucle && visible) { dernier = performance.now(); boucle = requestAnimationFrame(tic); } };
-    new IntersectionObserver(e => { visible = e[0].isIntersecting; lancer(); }).observe(guirlande);
-    document.addEventListener("visibilitychange", lancer);
+    new IntersectionObserver(e => { visible = e[0].isIntersecting; }).observe(guirlande);
+    window.addEventListener("scroll", lancer, { passive: true });
     // la souris bouscule les lettres qu'elle frôle ; un toucher donne une pichenette
     guirlande.parentNode.addEventListener("pointermove", e => {
       if (e.pointerType !== "mouse") return;
       for (const l of L) {
         const r = l.el.getBoundingClientRect();
-        if (e.clientX > r.left - 20 && e.clientX < r.right + 20 && e.clientY > r.top && e.clientY < r.bottom + 30) l.v += e.movementX * 2.4;
+        if (e.clientX > r.left - 20 && e.clientX < r.right + 20 && e.clientY > r.top && e.clientY < r.bottom + 30) { prendre(); l.v += e.movementX * 2.4; lancer(); }
       }
     });
     L.forEach(l => l.el.addEventListener("pointerdown", e => {
       const r = l.el.getBoundingClientRect();
-      l.v += (e.clientX < r.left + r.width / 2 ? 1 : -1) * 170;
+      prendre(); l.v += (e.clientX < r.left + r.width / 2 ? 1 : -1) * 170; lancer();
     }));
     // téléphone penché : les lettres pendent vers le bas (Android ; iOS demande une permission, on s'en passe)
     if (window.DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission !== "function") {
-      window.addEventListener("deviceorientation", e => { if (e.gamma != null) penche = Math.max(-20, Math.min(20, -e.gamma * 0.6)); });
+      window.addEventListener("deviceorientation", e => { if (e.gamma == null) return; penche = Math.max(-20, Math.min(20, -e.gamma * 0.6)); if (Math.abs(penche) > 3) { prendre(); lancer(); } });
     }
     lancer();
   }
