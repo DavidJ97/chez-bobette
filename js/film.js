@@ -4,7 +4,7 @@
 
   Déroulement :
     1. Le premier écran (lettres, néon, papiers) sert d'écran de chargement : les images de la première séquence
-       sont chargées avant de laisser défiler (« Chargement 42 % » sur l'étiquette rouge, puis « Défilez »).
+       chargées 1 sur 4 avant de laisser défiler (« Chargement 42 % » sur l'étiquette rouge, puis « Défilez ») ; le reste suit.
        Réseau lent : on libère quand même au bout de 5 s, l'image la plus proche déjà chargée remplace celles qui manquent.
     2. Dès qu'on défile, un hublot s'ouvre dans le papier peint et s'agrandit jusqu'à découvrir toute la vidéo.
     3. Les séquences suivantes se chargent pendant qu'on regarde la première, d'abord 1 image sur 8, puis 4, 2, et toutes.
@@ -144,9 +144,14 @@
       const ordre = [];
       for (let i = 1; i < n0; i++) if (i % 4 === 0) ordre.push(i);
       for (let i = 1; i < n0; i++) if (i % 4 !== 0) ordre.push(i);
-      await Promise.all(ordre.map(i => charger(i).then(() => { charge = ++faites / n0; if (!pret) afficher(0); })));
+      // on laisse défiler dès que 1 image sur 4 est là ; le reste arrive pendant qu'on regarde
+      const quart = ordre.filter(i => i % 4 === 0).length;
+      const total = quart + 1;
+      const lots = ordre.map(i => charger(i).then(() => { faites++; charge = Math.min(1, faites / total); if (!pret) afficher(0); }));
+      await Promise.all(lots.slice(0, quart));
       clearTimeout(garde);
       liberer();
+      await Promise.all(lots);
     }
     async function chargerSuite() {
       for (let s = 1; s < NOMS.length; s++) {
