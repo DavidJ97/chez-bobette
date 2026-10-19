@@ -88,7 +88,7 @@
     }
     function mesure() {
       const r = parcours.getBoundingClientRect(), haut = scene.offsetHeight, y = Math.max(0, parseFloat(getComputedStyle(scene).top) - r.top);
-      const course = Math.max(1, r.height - haut), entree = Math.min(haut * 0.75, course * 0.12);
+      const course = Math.max(1, r.height - haut), entree = Math.min(haut * 1.2, course * 0.14); // le hublot s'ouvre sur plus d'un écran : on a le temps de regarder l'enseigne
       return { y, course, entree };
     }
     function tic() {
