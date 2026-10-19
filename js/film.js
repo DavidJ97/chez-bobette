@@ -12,6 +12,7 @@
 */
 (function () {
   "use strict";
+  window.BobetteFilm = true; // repère pour js/avant.js : le script du film a bien démarré
   const doc = document.documentElement, SEQ = window.BOBETTE_SEQ, api = window.Bobette;
   const parcours = document.getElementById("parcours"), scene = document.getElementById("scene"), toile = document.getElementById("film");
   const versionFixe = () => doc.classList.remove("film", "attente");

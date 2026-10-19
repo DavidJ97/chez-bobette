@@ -32,6 +32,12 @@ Site statique : aucun serveur, aucune base de données, aucun pistage.
 - **GitHub Pages (aperçu)** : le site fonctionne, mais le formulaire prépare la demande dans le courriel du visiteur
   au lieu de l'envoyer directement. GitHub interdit l'usage commercial durable de Pages.
 
+## Après une modification des styles ou des scripts
+
+La page charge deux fichiers assemblés : `styles/site.min.css` et `js/site.min.js`. Après avoir modifié un fichier de
+`styles/` ou de `js/`, relancer `npm install` (la première fois) puis `npm run build`. `infos.js` n'est pas concerné :
+il se modifie directement. Sur Netlify, l'assemblage se fait tout seul à chaque mise en ligne.
+
 ## Tester en local
 
 ```

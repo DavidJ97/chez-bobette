@@ -1,0 +1,11 @@
+{
+  "name": "chez-bobette",
+  "private": true,
+  "description": "Site de la buanderie Chez Bobette",
+  "scripts": {
+    "build": "node outils/construire.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.10"
+  }
+}
