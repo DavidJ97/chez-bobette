@@ -71,17 +71,9 @@ body{padding-bottom:calc(var(--barre) + env(safe-area-inset-bottom))}
 /* ---------- demande de tournage ---------- */
 .c-intro{display:grid;gap:30px;align-content:start;justify-items:start}
 .c-intro .plaque{margin-bottom:0}
-.a-tel{width:100%;overflow:hidden}
+.a-tel{width:100%}
 .gros-tel a{display:inline-flex;align-items:center;flex-wrap:wrap;min-height:48px;font:800 28px/1.1 var(--f-texte);font-stretch:110%;text-decoration:none}
-/* les languettes à arracher, au bas de l'affichette */
-.languettes{display:flex;margin:18px -20px -22px;border-top:2px dashed #b3a78f}
-.languette{flex:1;min-width:0;height:132px;padding:8px 0;border:0;border-left:1px dashed #b3a78f;background:var(--papier);color:var(--encre);cursor:pointer;transform-origin:50% 0;
-  transition:transform .55s cubic-bezier(.5,0,.9,.5),opacity .55s}
-.languette:first-child{border-left:0}
-.languette bdi{writing-mode:vertical-rl;font:700 14px/1 var(--f-lcd);letter-spacing:.04em}
-.languette:hover{transform:rotate(-2deg)}
-.languette:nth-child(2),.languette:nth-child(5){visibility:hidden}
-.languette.arrachee{transform:translateY(70px) rotate(14deg);opacity:0;pointer-events:none}
+/* les languettes à arracher : voir styles/themes.css */
 .piege{position:absolute;left:-9999px}
 .champs{display:grid;gap:18px}
 .champ{display:grid;gap:6px;min-width:0;border:0;padding:0;margin:0}
@@ -158,7 +150,6 @@ body{padding-bottom:calc(var(--barre) + env(safe-area-inset-bottom))}
   .plaque{margin-bottom:40px}
   .g-contact{grid-template-columns:4fr 7fr;align-items:start;gap:44px}
   .f-titre{font-size:32px}
-  .languettes{margin:22px -30px -28px}
 }
 @media (min-width:1200px) and (min-height:600px) and (min-aspect-ratio:1/1){
   .e-tel{display:inline-flex}
