@@ -23,7 +23,7 @@
 .film .parcours{height:1000svh}
 .film .scene{position:sticky;top:var(--entete);display:grid;grid-template-rows:auto minmax(0,1fr);height:calc(100svh - var(--entete) - var(--bas));overflow:hidden}
 /* le rideau : tout le premier écran, percé d'un hublot dont js/film.js règle le rayon (--trou) et le centre (--cx, --cy) */
-.film .hero{position:absolute;inset:0;z-index:3;min-height:0;background:#ddd6c6 url(../assets/img/94a53ba24e.webp) 50% 0/680px auto;
+.film .hero{position:absolute;inset:0;z-index:3;min-height:0;background:#ddd6c6 url(../assets/img/papier-peint-m.webp) 50% 0/680px auto;
   -webkit-mask-image:radial-gradient(circle at var(--cx,50%) var(--cy,30%),transparent calc(var(--trou,0px) - 1px),#000 var(--trou,0px));
   mask-image:radial-gradient(circle at var(--cx,50%) var(--cy,30%),transparent calc(var(--trou,0px) - 1px),#000 var(--trou,0px))}
 .film .hero>*{translate:0 calc(var(--sortie,0)*-18svh);opacity:calc(1 - var(--sortie,0)*1.5)}
