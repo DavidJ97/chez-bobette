@@ -42,29 +42,36 @@
 .pi-jaune{--pc:var(--pi-jaune)} .pi-rose{--pc:var(--pi-rose)} .pi-bleu{--pc:var(--pi-bleu)} .pi-vert{--pc:var(--pi-vert)} .pi-orange{--pc:var(--pi-orange)}
 
 /* ============ le geste : une main qui fait défiler un téléphone, ou une souris dont la molette tourne ============ */
-.geste{display:block;flex:none;width:var(--gw,64px);aspect-ratio:80/104}
-.geste svg{display:block;width:100%;height:100%;overflow:visible}
+/* Chaque pièce qui bouge est un élément HTML à part, animé seulement en transform et opacity :
+   la carte graphique s'en charge, le processeur du téléphone n'a rien à recalculer à chaque image. */
+.geste{position:relative;display:block;flex:none;width:var(--gw,64px);aspect-ratio:80/104}
+.g-main,.g-souris{position:absolute;inset:0}
+.g-calque{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .g-souris{display:none!important}
 @media (hover:hover) and (pointer:fine){ .g-main{display:none!important} .g-souris{display:block!important} }
 .g-tel{fill:#fffdf6;stroke:#2a2318;stroke-width:3.2}
+/* l'écran du téléphone et son contenu qui défile (3 fois le même motif : la boucle ne saute pas) */
+.g-ecran{position:absolute;left:25%;top:8.65%;width:50%;height:59.6%;overflow:hidden;border-radius:3px}
+.g-lignes{position:absolute;left:0;top:0;width:100%;height:174.2%;will-change:transform;animation:g-lignes 2.4s cubic-bezier(.45,0,.25,1) infinite}
+.g-lignes svg{display:block;width:100%;height:100%}
 .g-lignes rect{fill:#d6ccb8}
 .g-lignes rect:nth-child(3n+1){fill:#9fb7d9}
+.g-doigt{position:absolute;inset:0;will-change:transform,opacity;animation:g-doigt 2.4s cubic-bezier(.45,0,.25,1) infinite}
 .g-paume{fill:#ffd7b5;stroke:#2a2318;stroke-width:2.8;stroke-linejoin:round;stroke-linecap:round}
-.g-tap{fill:rgba(27,111,208,.4)}
+.g-tap{position:absolute;left:41.25%;top:49%;width:17.5%;aspect-ratio:1;border-radius:50%;background:rgba(27,111,208,.4);will-change:transform,opacity;animation:g-tap 2.4s ease-out infinite}
 /* le doigt se pose en bas de l'écran, appuie, remonte (la page descend), se lève et revient : le vrai geste */
-.g-doigt{animation:g-doigt 2.4s cubic-bezier(.45,0,.25,1) infinite}
-.g-lignes{animation:g-lignes 2.4s cubic-bezier(.45,0,.25,1) infinite}
-.g-tap{transform-box:fill-box;transform-origin:50% 50%;animation:g-tap 2.4s ease-out infinite}
-@keyframes g-doigt{0%{transform:translate(4px,10px);opacity:0}14%{transform:translate(0,0);opacity:1}22%{transform:translate(0,1px) scale(.98)}64%{transform:translate(0,-35px) scale(.98)}76%{transform:translate(3px,-40px);opacity:0}100%{transform:translate(4px,10px);opacity:0}}
-@keyframes g-lignes{0%,22%{transform:translateY(0)}64%,100%{transform:translateY(-36px)}}
+@keyframes g-doigt{0%{transform:translate(5%,9.6%);opacity:0}14%{transform:translate(0,0);opacity:1}22%{transform:translate(0,1%) scale(.98)}64%{transform:translate(0,-33.7%) scale(.98)}76%{transform:translate(3.8%,-38.5%);opacity:0}100%{transform:translate(5%,9.6%);opacity:0}}
+@keyframes g-lignes{0%,22%{transform:translateY(0)}64%,100%{transform:translateY(-33.333%)}}
 @keyframes g-tap{0%,16%{opacity:0;transform:scale(.3)}24%{opacity:1;transform:scale(1)}64%{opacity:.7;transform:scale(.9)}72%,100%{opacity:0;transform:scale(1.4)}}
 .g-corps{fill:#fffdf6;stroke:#2a2318;stroke-width:3.2}
 .g-raie{stroke:#2a2318;stroke-width:2.4}
-.g-roue{fill:#2a2318;animation:g-roue 1.6s ease-in-out infinite}
-.g-fleche{fill:none;stroke:#2a2318;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;animation:g-fleche 1.6s ease-in-out infinite}
-.g-fleche.f2{animation-delay:.18s}
-@keyframes g-roue{0%{transform:translateY(0);opacity:1}60%{transform:translateY(9px);opacity:0}61%{transform:translateY(-2px);opacity:0}100%{transform:translateY(0);opacity:1}}
-@keyframes g-fleche{0%,100%{transform:translateY(-3px);opacity:.25}50%{transform:translateY(4px);opacity:1}}
+.g-roue{position:absolute;left:45.6%;top:15.4%;width:8.75%;height:12.5%;border-radius:99px;background:#2a2318;will-change:transform,opacity;animation:g-roue 1.6s ease-in-out infinite}
+.g-fleche{position:absolute;left:35%;width:30%;top:75%;will-change:transform,opacity;animation:g-fleche 1.6s ease-in-out infinite}
+.g-fleche.f2{top:85.5%;animation-delay:.18s}
+.g-fleche svg{display:block;width:100%;height:auto;overflow:visible}
+.g-fleche path{fill:none;stroke:#2a2318;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
+@keyframes g-roue{0%{transform:translateY(0);opacity:1}60%{transform:translateY(70%);opacity:0}61%{transform:translateY(-15%);opacity:0}100%{transform:translateY(0);opacity:1}}
+@keyframes g-fleche{0%,100%{transform:translateY(-25%);opacity:.25}50%{transform:translateY(35%);opacity:1}}
 @media (prefers-reduced-motion:reduce){ .g-doigt,.g-lignes,.g-tap,.g-roue,.g-fleche{animation:none} }
 
 /* le post-it « Défilez pour entrer » du premier écran */
