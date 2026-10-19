@@ -70,7 +70,7 @@
   .film .etape p{font-size:15px;line-height:1.4}
   .film .p-pied .btn{display:none}
 }
-@media (min-width:900px) and (min-height:600px){
+@media (min-width:900px) and (min-height:600px) and (min-aspect-ratio:1/1){
   :root{--bas:0px}
   /* le rideau couvre toute la scène ; son contenu reste centré sur 1280 px */
   .film .hero{width:auto;margin:0;padding-inline:max(var(--marge),(100% - 1280px)/2 + var(--marge));background-size:880px auto}

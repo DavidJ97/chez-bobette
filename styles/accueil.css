@@ -130,7 +130,7 @@ body{padding-bottom:calc(var(--barre) + env(safe-area-inset-bottom))}
 }
 
 /* ---------- ordinateur : panneau de touches en haut, plus de barre en bas ---------- */
-@media (min-width:900px) and (min-height:600px){
+@media (min-width:900px) and (min-height:600px) and (min-aspect-ratio:1/1){
   :root{--entete:60px}
   body{padding-bottom:0}
   .barre{display:none}
@@ -160,6 +160,6 @@ body{padding-bottom:calc(var(--barre) + env(safe-area-inset-bottom))}
   .f-titre{font-size:32px}
   .languettes{margin:22px -30px -28px}
 }
-@media (min-width:1200px) and (min-height:600px){
+@media (min-width:1200px) and (min-height:600px) and (min-aspect-ratio:1/1){
   .e-tel{display:inline-flex}
 }
