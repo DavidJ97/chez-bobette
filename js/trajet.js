@@ -41,7 +41,7 @@
         const marche = borne(p / 0.82);                       // la marche, puis on recule
         const fait = long * marche, tete = chemin.getPointAtLength(fait);
         const plein = Math.max(cw / W, ch / H);               // tout le plan
-        const proche = Math.max(plein * 1.5, ch * 1.45 / H);  // plan agrandi autour du marcheur
+        const proche = ch > cw ? plein * 1.12 : Math.min(plein * 2.2, Math.max(plein * 1.3, ch * 1.45 / H)); // plan agrandi autour du marcheur (écran debout : le plan est déjà grand)
         const recul = doux(borne((p - 0.82) / 0.16));
         const s = proche + (plein - proche) * recul;
         const cx = (cw / 2 - tete.x * s) * (1 - recul) + (cw - W * s) / 2 * recul;
