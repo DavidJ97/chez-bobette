@@ -120,8 +120,11 @@
 .machines{display:grid;grid-template-columns:1fr 1fr;gap:22px 16px;width:min(1000px,100%);margin:0;padding:0;list-style:none}
 .machine{position:relative;display:grid;grid-template-rows:auto 1fr;justify-items:center;gap:12px;padding:16px 14px 16px;border-radius:16px;color:#1f1b18;
   background:linear-gradient(180deg,#fbfbf8,#e6e6e0);box-shadow:inset 0 2px 0 #fff,inset 0 -4px 0 rgba(0,0,0,.08),0 18px 28px rgba(30,15,5,.35)}
-.m-dessin{display:block;width:min(150px,82%)}
-.m-dessin svg{display:block;width:100%;height:auto}
+.m-dessin{display:block;width:100%;padding:6px;border-radius:12px;background:linear-gradient(180deg,#cfd4d8,#9aa3aa);box-shadow:inset 0 1px 0 #fff,inset 0 -2px 4px rgba(0,0,0,.25)}
+.m-dessin img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:8px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.2)}
+/* la sécheuse : la photo dans le hublot, cerclée d'inox */
+.m-secheuse .m-dessin{width:86%;padding:8px;border-radius:50%;background:radial-gradient(circle,#e8ecef 60%,#8d969d)}
+.m-secheuse .m-dessin img{border-radius:50%}
 .m-panneau{display:grid;align-content:start;justify-items:center;gap:6px;width:100%;text-align:center}
 .m-nom{font:800 19px/1.05 var(--f-texte);font-stretch:80%;text-transform:uppercase;letter-spacing:.04em}
 .m-note{font:400 17px/1.1 var(--m-stylo);color:#5a5148}
@@ -144,13 +147,15 @@
 .theme .postits{display:grid;grid-template-columns:1fr 1fr;gap:26px 18px;width:100%;max-width:980px;margin:0;padding:0;list-style:none}
 .theme .postits li{position:relative;min-height:150px;padding:18px 16px 20px;font-size:inherit;line-height:1.25;transform:perspective(700px) rotate(var(--r)) rotateX(3deg)}
 .theme .postits li{display:grid;align-content:start;gap:6px}
-.pi-dessin{display:block;width:58px;height:58px;color:#2a2318}
-.pi-dessin svg{display:block;width:100%;height:100%;overflow:visible}
+/* la photo glissée sous un bout de ruban, sur chaque post-it */
+.pi-dessin{position:relative;display:block;width:96px;padding:4px 4px 12px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25),0 6px 10px rgba(40,20,0,.25);transform:rotate(-4deg)}
+.pi-dessin img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover}
+.pi-dessin::after{content:"";position:absolute;top:-8px;left:50%;width:46px;height:16px;margin-left:-23px;background:rgba(240,232,200,.85);box-shadow:0 1px 1px rgba(0,0,0,.15);transform:rotate(5deg)}
 .theme .postits h3{margin:0}
 /* Monnaie : post-it jaune carré, stylo bille */
 .theme .postits li[data-id="paiement"]{--pc:var(--pi-jaune);--r:-2.5deg}
-.theme .postits li[data-id="paiement"] .pi-dessin{position:absolute;top:-14px;right:-8px;width:62px;height:62px;transform:rotate(12deg)}
-.theme .postits li[data-id="paiement"] h3{font:400 30px/1 var(--m-stylo);padding-right:48px}
+.theme .postits li[data-id="paiement"] .pi-dessin{position:absolute;top:-18px;right:-12px;width:84px;transform:rotate(8deg)}
+.theme .postits li[data-id="paiement"] h3{font:400 30px/1 var(--m-stylo);padding-right:64px}
 .theme .postits li[data-id="paiement"] p{font:400 22px/1.2 var(--m-stylo)}
 /* Monnayeur : feuille de cahier ligné arrachée, écriture appliquée */
 .theme .postits li[data-id="monnayeur"]{--r:1.8deg;margin-top:18px;padding-top:26px;padding-left:34px;border-radius:0;
@@ -161,20 +166,20 @@
 .theme .postits li[data-id="monnayeur"] p{font:400 20px/26px var(--m-propre)}
 /* Wi-Fi : post-it vert, le symbole en grand, texte en étiquette imprimée */
 .theme .postits li[data-id="wifi"]{--pc:var(--pi-vert);--r:1.2deg;justify-items:center;text-align:center}
-.theme .postits li[data-id="wifi"] .pi-dessin{width:84px;height:66px;color:#1d5c2e}
+.theme .postits li[data-id="wifi"] .pi-dessin{width:110px;transform:rotate(3deg)}
 .theme .postits li[data-id="wifi"] h3{font:400 30px/1 var(--f-feutre)}
 .theme .postits li[data-id="wifi"] p{display:inline-block;padding:4px 8px;background:#fff;font:600 14px/1.35 var(--f-lcd);box-shadow:0 1px 2px rgba(0,0,0,.2);transform:rotate(-2deg)}
 /* Laveuse géante : grand post-it rose en hauteur, crayon */
 .theme .postits li[data-id="geante"]{--pc:var(--pi-rose);--r:-1.6deg;margin-top:14px;min-height:190px}
-.theme .postits li[data-id="geante"] .pi-dessin{width:70px;height:70px}
+.theme .postits li[data-id="geante"] .pi-dessin{width:104px;transform:rotate(-6deg)}
 .theme .postits li[data-id="geante"] h3{font:400 36px/.9 var(--m-fin)}
-.theme .postits li[data-id="geante"] p{font:400 30px/1 var(--m-crayon)}
+.theme .postits li[data-id="geante"] p{font:400 28px/1 var(--m-fin)}
 /* Bobette express : fiche bristol orange arrachée d'un carnet à spirale */
 .theme .postits li[data-id="express"]{--pc:var(--pi-orange);--r:3deg;grid-column:1/-1;justify-self:center;width:min(78%,320px);padding-top:30px;grid-template-columns:auto 1fr;column-gap:12px;align-items:center;
   background:radial-gradient(circle at 50% 9px,#3a2c1c 0 4px,transparent 4.5px) 6px 4px/22px 22px repeat-x,linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,0) 30%),var(--grain),var(--pc);border-radius:2px}
-.theme .postits li[data-id="express"] .pi-dessin{grid-row:span 2;width:70px;height:70px}
+.theme .postits li[data-id="express"] .pi-dessin{grid-row:span 2;width:110px;transform:rotate(-3deg)}
 .theme .postits li[data-id="express"] h3{font:700 32px/1 var(--m-feutre);text-decoration:underline wavy rgba(42,35,24,.5) 2px;text-underline-offset:5px}
-.theme .postits li[data-id="express"] p{font:400 22px/1.1 var(--m-stylo)}
+.theme .postits li[data-id="express"] p{font:700 22px/1.1 var(--m-feutre)}
 .theme .postits .ex{font-family:var(--f-texte)}
 .theme .postits li.tenu{box-shadow:0 2px 2px rgba(0,0,0,.18),0 34px 30px -16px rgba(40,20,0,.5)}
 
@@ -281,8 +286,8 @@
 .hublot{display:none}
 .film .etape{display:grid;grid-template-columns:auto 1fr;column-gap:16px;align-items:center;padding:16px 18px 16px 14px;border-radius:12px}
 .film .etape::before{display:none}
-.film .etape .hublot{display:block;grid-row:span 2;width:clamp(84px,24vw,140px)}
-.hublot svg{display:block;width:100%;height:auto;overflow:visible}
+.film .etape .hublot{display:block;grid-row:span 2;width:clamp(84px,24vw,140px);padding:6px;border-radius:50%;background:radial-gradient(circle,#f1f3f5 58%,#8d969d 72%,#d9dde0 100%);box-shadow:0 6px 12px rgba(0,0,0,.3)}
+.film .etape .hublot img,.hublot img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:50%;box-shadow:inset 0 0 12px rgba(0,0,0,.5)}
 .film .etape h2{margin:0 0 4px}
 .film .etape p{margin:0}
 /* 1. payer : la plaque d'inox du monnayeur */
@@ -312,7 +317,7 @@
 }
 @media (min-width:640px) and (max-aspect-ratio:4/5){
   .hero{grid-template-columns:1fr 1fr;gap:4vw 3vw;padding-inline:4vw}
-  .guirlande{--h:calc((100vw - 8vw)/7.6);justify-content:center}
+  .guirlande{--h:calc((100vw - 8vw)/11.2);justify-content:center}
   .enseigne{grid-column:1/-1;justify-self:stretch;padding:2vw 3vw 3vw}
   .mot-neon{font-size:19vw}
   .suite-neon{font-size:3.2vw}
