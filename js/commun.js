@@ -187,7 +187,8 @@
     // textes fixes : data-en porte l'anglais, le français d'origine est gardé de côté
     document.querySelectorAll("[data-en]").forEach(el => {
       if (el.dataset.fr === undefined) el.dataset.fr = el.innerHTML;
-      el.innerHTML = lg === "en" ? el.dataset.en : el.dataset.fr;
+      const h = lg === "en" ? el.dataset.en : el.dataset.fr;
+      if (el.innerHTML !== h) el.innerHTML = h; // on ne touche pas à ce qui est déjà juste : pas de recalcul de mise en page
     });
     [["aria-label", "enAria"], ["placeholder", "enPh"], ["alt", "enAlt"]].forEach(a => {
       document.querySelectorAll("[data-" + a[1].replace(/[A-Z]/g, c => "-" + c.toLowerCase()) + "]").forEach(el => {
@@ -200,7 +201,7 @@
       const f = BLOCS[el.dataset.bloc];
       if (!f) return;
       const html = f(B, lg);
-      el.innerHTML = html;
+      if (el.innerHTML !== html) el.innerHTML = html;
       if (el.hasAttribute("data-vide")) el.hidden = !html;
     });
     document.querySelectorAll("[data-lien]").forEach(el => {
@@ -211,7 +212,8 @@
     document.querySelectorAll("[data-etat]").forEach(el => { el.dataset.etat = e.ouvert ? "ouvert" : "ferme"; });
     document.querySelectorAll(".langue").forEach(b => {
       b.textContent = lg === "en" ? "FR" : "EN";
-      b.setAttribute("aria-label", lg === "en" ? "Passer au français" : "Switch to English");
+      // le nom lu commence par le mot affiché (EN / FR), pour la commande vocale
+      b.setAttribute("aria-label", lg === "en" ? "FR, passer au français" : "EN, switch to English");
       b.setAttribute("lang", lg === "en" ? "fr" : "en");
     });
     suivis.forEach(f => f(lg));
