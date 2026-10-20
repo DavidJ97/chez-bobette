@@ -1,5 +1,8 @@
 # Chez Bobette — site web
 
+> **Branche `v2`** : refonte d'après les maquettes (jaune, bleu, papier, papier peint). Fichiers : `index.html`,
+> `styles/v2.css`, `js/v2.js`, `assets/v2/`. Aucun assemblage nécessaire. Les infos viennent toujours de `infos.js`.
+
 Buanderie de quartier au 850, avenue Duluth Est (Plateau-Mont-Royal, Montréal), qui se loue aussi pour des tournages.
 Site statique : aucun serveur, aucune base de données, aucun pistage.
 
