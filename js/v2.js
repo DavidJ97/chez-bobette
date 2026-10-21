@@ -28,7 +28,8 @@
     trajet3: [[0, 100, 800, 860], [780, 140, 1536, 860]],
     trajet4: [[0, 100, 940, 820], [690, 100, 1536, 860]]
   };
-  const modeTel = () => innerWidth < 900 && innerHeight > innerWidth * 0.9;
+  // Téléphone : la version dédiée (index.html, bloc MOBILE) remplace les « fenêtres ».
+  const modeTel = () => false;
   const TEL = modeTel();
   if (TEL) {
     document.documentElement.classList.add("fenetres");
@@ -348,6 +349,7 @@
   let fini = false;
   const termine = () => {
     if (fini) return; fini = true; pct.textContent = "100";
+    try { localStorage.setItem("bobette-intro", "1"); } catch (e) {}
     setTimeout(() => { document.body.classList.remove("charge"); ajusteTout(); }, 250);
     surDefilement();
   };
@@ -357,8 +359,12 @@
     if (ok === attendre.length) termine();
   };
   attendre.forEach((im) => { if (!im.complete) { im.addEventListener("load", compte); im.addEventListener("error", compte); } });
+  let dejaVu = false;
+  try { dejaVu = localStorage.getItem("bobette-intro") === "1"; } catch (e) {}
+  // L'écran de chargement ne s'affiche qu'à la première visite (et jamais sur téléphone, qui a sa propre intro).
+  if (dejaVu || matchMedia("(max-width: 760px)").matches) { fini = true; document.body.classList.remove("charge"); surDefilement(); }
   compte();
-  setTimeout(termine, 5000);
+  setTimeout(termine, 2500);
   if (document.fonts) document.fonts.ready.then(ajusteTout);
   surDefilement();
   setInterval(remplir, 60000);

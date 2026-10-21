@@ -6,6 +6,14 @@
 Buanderie de quartier au 850, avenue Duluth Est (Plateau-Mont-Royal, Montréal), qui se loue aussi pour des tournages.
 Site statique : aucun serveur, aucune base de données, aucun pistage.
 
+## Version téléphone (≤ 760 px)
+
+Les maquettes téléphone corrigées sont dans `assets/m/` ; `outils/mobile.py` génère leur bloc dans `index.html`
+(zones cliquables, champs du formulaire, film). Fichiers : `styles/mobile.css`, `js/mobile.js`.
+Corrections faites : intro montrée une seule fois (2,5 s au plus), faute « livraison », menu « Tirez » retiré (seule la
+barre du bas navigue), fiche technique vide retirée, vraies photos à la place de la façade générée, néon qui suit les
+vraies heures, itinéraire en un seul écran, prix de la sécheuse et choix du formulaire précisés.
+
 ## Le site
 
 - `index.html` : tout le site. L'enseigne en lettres ballons sert d'écran de chargement ; en défilant, un hublot s'ouvre

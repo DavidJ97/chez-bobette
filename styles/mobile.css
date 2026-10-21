@@ -1,0 +1,106 @@
+/* ============================================================
+   CHEZ BOBETTE — version téléphone (≤ 760 px)
+   Chaque écran est la maquette corrigée (assets/m/). Les éléments posés dessus
+   se placent en pixels de l'image : --x, --y, --l, --t, convertis en % de --w × --h.
+   ============================================================ */
+.mob, .m-intro { display: none; }
+
+@media (max-width: 760px) {
+  body { background: #0d2a20; padding-bottom: calc(100vw * 130 / 853); }
+  .mob { display: block; }
+  main > :not(.mob), .chargement, .tirette, .menu, .saut { display: none !important; }
+
+  .m-planche { position: relative; display: block; width: 100%; aspect-ratio: var(--w) / var(--h); container-type: inline-size; margin: 0; }
+  .m-planche > img { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .m-planche [style*="--x"] {
+    position: absolute;
+    left: calc(var(--x) / var(--w) * 100%); top: calc(var(--y) / var(--h) * 100%);
+    width: calc(var(--l) / var(--w) * 100%); height: calc(var(--t) / var(--h) * 100%);
+  }
+  .m-ecran { scroll-margin-top: 0; }
+
+  /* zones cliquables */
+  .m-zone { display: block; padding: 0; margin: 0; border: 0; background: transparent; border-radius: 1.4cqw; cursor: pointer; z-index: 3; -webkit-tap-highlight-color: rgba(0,0,0,.08); }
+  .m-zone[data-rond] { border-radius: 50%; }
+  .m-zone:focus-visible { outline: 3px solid #0d1a12; outline-offset: 2px; }
+
+  /* ---------- Néon de l'accueil : suit les vraies heures ---------- */
+  .m-neon {
+    margin: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: #131011; border-radius: 2cqw; box-shadow: 0 1.6cqw 3cqw rgba(0,0,0,.35), inset 0 0 0 .5cqw #2b2729; rotate: -4deg;
+  }
+  .m-neon span { font: 400 7.6cqw/1 "Yellowtail", cursive; color: #eafff4; text-shadow: 0 0 .4cqw #fff, 0 0 1.2cqw #7dffc4, 0 0 2.6cqw #23d18b; }
+  .m-neon small { font: 700 2cqw/1.2 "Archivo", sans-serif; color: #fff; opacity: .85; margin-top: .6cqw; letter-spacing: .04em; }
+  .m-neon.ferme span { color: #ffe3ea; text-shadow: 0 0 .4cqw #fff, 0 0 1.2cqw #ff5f8f, 0 0 2.6cqw #d0164d; }
+
+  /* ---------- Intro (première visite seulement) ---------- */
+  .m-intro { position: fixed; inset: 0; z-index: 95; background: #f6d22c; overflow: hidden; transition: opacity .45s, visibility .5s; }
+  .m-intro:not([hidden]) { display: block; }
+  .m-intro .m-planche { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: min(100vw, 100svh * 853 / 1844); }
+  .m-intro.fini { opacity: 0; visibility: hidden; }
+  .m-intro-jauge { z-index: 2; border-radius: 99px; background: #0d3a25; overflow: hidden; }
+  .m-intro-jauge i { display: block; height: 100%; width: 0; background: #49f5a5; border-radius: 99px; transition: width .25s; }
+
+  /* ---------- Le film ---------- */
+  .m-film { height: 420vh; position: relative; background: #0f4f72; }
+  .m-collant { position: sticky; top: 0; height: calc(100svh - 100vw * 130 / 853); display: flex; align-items: center; overflow: hidden; }
+  .m-collant .m-planche { width: min(100%, (100svh - 100vw * 130 / 853) * 933 / 1541); margin: 0 auto; }
+  .m-canvas { border-radius: 50%; z-index: 1; opacity: 0; transition: opacity .4s; }
+  .m-canvas.pret { opacity: 1; }
+  .m-vitre {
+    border-radius: 50%; z-index: 2; pointer-events: none;
+    background: radial-gradient(ellipse 46% 20% at 38% 20%, rgba(255,255,255,.3), transparent 70%), radial-gradient(circle, transparent 62%, rgba(0,0,0,.35) 100%);
+    box-shadow: inset 0 0 0 2px rgba(255,255,255,.12), inset 0 1cqw 4cqw rgba(0,0,0,.45);
+  }
+  .m-lecture { z-index: 4; border: 0; padding: 0; border-radius: 50%; background: #f7f3ea; box-shadow: 0 1cqw 2cqw rgba(0,0,0,.3); cursor: pointer; }
+  .m-lecture span { position: absolute; left: 38%; top: 28%; width: 30%; height: 44%; background: #101418; clip-path: polygon(0 0, 100% 50%, 0 100%); }
+  .m-lecture[aria-pressed="true"] span { left: 33%; width: 34%; clip-path: polygon(0 0, 36% 0, 36% 100%, 0 100%, 0 0, 64% 0, 100% 0, 100% 100%, 64% 100%, 64% 0); }
+  .m-lcd { margin: 0; z-index: 3; background: #001c19; border-radius: 1cqw; display: flex; align-items: center; padding-left: 3.2cqw; }
+  .m-lcd b { font: 400 3.5cqw/1 "Anton", sans-serif; letter-spacing: .05em; color: #43e8a2; text-transform: uppercase; white-space: nowrap; }
+  .m-lcd .m-jauge { --w: 840; --h: 60; border-radius: 99px; background: #1d5c48; overflow: hidden; }
+  .m-jauge i { display: block; height: 100%; width: 0; background: #5ff4ad; border-radius: 99px; }
+  .m-marque { z-index: 1; border-radius: 50%; background: #fcd11c; mix-blend-mode: multiply; transition: left .4s cubic-bezier(.3,1.3,.5,1); }
+  .m-trait { z-index: 1; background: #0b0f0c; border-radius: 99px; rotate: -1.5deg; transition: left .4s, width .4s; }
+
+  /* ---------- Tournage : vraies photos ---------- */
+  .m-photos { z-index: 1; border-radius: 1.2cqw; overflow: hidden; background: #111; }
+  .m-photos img { width: 100%; height: 100%; object-fit: cover; }
+  .m-photos img[hidden] { display: none; }
+  .m-compteur { margin: 0; z-index: 2; background: #0e0e0e; color: #f4eedd; display: grid; place-items: center; font: 700 2.6cqw/1 "Archivo", sans-serif; letter-spacing: .12em; }
+  .m-onglet[aria-pressed="true"] { background: #f6d22c; mix-blend-mode: multiply; }
+
+  /* ---------- Formulaire posé sur la maquette ---------- */
+  .m-champ { z-index: 2; display: block; }
+  .m-champ input, .m-champ textarea {
+    width: 100%; height: 100%; margin: 0; border: 0; border-radius: 1cqw; background: #fcf9f2; color: #111;
+    font: 500 3.3cqw/1.3 "Archivo", sans-serif; padding: 0 2.4cqw; outline: none;
+  }
+  .m-champ textarea { padding: 1.6cqw 2.4cqw; resize: none; }
+  .m-champ input::placeholder { color: #7a746a; }
+  .m-champ input:focus-visible, .m-champ textarea:focus-visible { box-shadow: 0 0 0 .6cqw #f6d22c; }
+  .m-champ :user-invalid { box-shadow: 0 0 0 .5cqw #c71414; }
+  .m-groupe { border: 0; margin: 0; padding: 0; }
+  .m-puce, .m-accord { display: block; cursor: pointer; } /* pas de z-index : le jaune doit se fondre (multiply) dans la maquette */
+  .m-puce input, .m-accord input { position: absolute; opacity: 0; inset: 0; margin: 0; width: 100%; height: 100%; cursor: pointer; }
+  .m-puce i { position: absolute; inset: 0; border-radius: 1.2cqw; pointer-events: none; }
+  .m-puce input:checked + span + i { background: #f6d22c; mix-blend-mode: multiply; }
+  .m-puce input:focus-visible + span + i, .m-accord input:focus-visible + span + i { outline: 3px solid #0d1a12; outline-offset: 1px; }
+  .m-accord i { position: absolute; left: 1%; top: 6%; width: 7.7%; height: 47%; border-radius: .8cqw; pointer-events: none; }
+  .m-accord input:checked + span + i { background: #0d1a12 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5 10 17 19 7' fill='none' stroke='%23fff' stroke-width='3'/%3E%3C/svg%3E") center / 70% no-repeat; }
+  .m-aide { margin: 0; z-index: 2; font: 600 2.5cqw/1 "Archivo", sans-serif; color: #5b5346; display: flex; align-items: center; }
+  .m-resultat { position: fixed; left: 16px; right: 16px; bottom: calc(100vw * 130 / 853 + 12px); z-index: 50; margin: 0; padding: 14px 16px; background: #0d1a12; color: #fff; font: 700 15px/1.35 "Archivo", sans-serif; border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,.35); }
+
+  /* ---------- Pied et barre du bas (seule navigation) ---------- */
+  .m-pied { background: #0d2a20; color: #f4eedd; padding: 22px 16px 26px; font: 500 14px/1.5 "Archivo", sans-serif; }
+  .m-pied p { margin: 0 0 6px; }
+  .m-barre { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; display: flex; aspect-ratio: 853 / 130; padding-bottom: env(safe-area-inset-bottom); background: #011e25; }
+  .m-barre img { position: absolute; inset: 0; width: 100%; height: auto; pointer-events: none; }
+  .m-barre a { position: relative; flex: 1; font-size: 0; color: transparent; -webkit-tap-highlight-color: rgba(255,255,255,.12); }
+  .m-barre a:focus-visible { outline: 3px solid #7dffc4; outline-offset: -4px; }
+  .m-barre a.ici::after { content: ""; position: absolute; left: 30%; right: 30%; bottom: 8%; height: 3px; border-radius: 3px; background: #7dffc4; }
+}
+
+@media (max-width: 760px) and (prefers-reduced-motion: reduce) {
+  .m-intro { display: none !important; }
+  .m-marque, .m-trait { transition: none; }
+}

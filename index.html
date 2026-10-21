@@ -17,8 +17,10 @@
 <link rel="icon" href="assets/img/icone.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" href="assets/v2/p/accueil.webp" fetchpriority="high">
+<link rel="preload" as="image" href="assets/v2/p/accueil.webp" fetchpriority="high" media="(min-width: 761px)">
+<link rel="preload" as="image" href="assets/m/accueil.webp" fetchpriority="high" media="(max-width: 760px)">
 <link rel="stylesheet" href="styles/v2.css">
+<link rel="stylesheet" href="styles/mobile.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"DryCleaningOrLaundry","name":"Chez Bobette","telephone":"+1-514-522-2612","address":{"@type":"PostalAddress","streetAddress":"850, avenue Duluth Est","addressLocality":"Montréal","addressRegion":"QC","addressCountry":"CA"}}</script>
 </head>
 <body class="charge">
@@ -58,6 +60,125 @@
 </nav>
 
 <main id="main">
+<!--MOBILE-->
+<div class="mob" id="mob">
+<div class="m-intro" id="m-intro" hidden>
+  <div class="m-planche" style="--w:853;--h:1844">
+    <img src="assets/m/intro.webp" width="853" height="1844" alt="Ça va tourner. Une petite pièce. Une grande visite.">
+    <span class="m-intro-jauge" style="--x:95;--y:1515;--l:661;--t:14"><i id="m-intro-jauge"></i></span>
+    <button class="m-zone" type="button" id="m-intro-passer" aria-label="Passer l'intro" style="--x:127;--y:1580;--l:591;--t:110"></button>
+  </div>
+</div>
+<section class="m-ecran " id="m-accueil" aria-label="Accueil">
+  <div class="m-planche" style="--w:853;--h:1713">
+    <img src="assets/m/accueil.webp" width="853" height="1713" alt="Chez Bobette, la buanderie du Plateau. 850, avenue Duluth Est, Montréal. Votre brassée, votre quartier." fetchpriority="high" decoding="async">
+    <p class="m-neon" style="--x:28;--y:1222;--l:262;--t:112"><span data-statut>Ouvert</span><small data-statut-suite></small></p>
+    <a class="m-zone" href="#m-horaires" aria-label="Horaires et prix" style="--x:156;--y:1369;--l:538;--t:112"></a>
+    <a class="m-zone" href="#m-trajet" aria-label="Venir nous voir" style="--x:322;--y:1488;--l:206;--t:40"></a>
+    <a class="m-zone" href="#m-film" aria-label="Découvrir la buanderie" style="--x:612;--y:1144;--l:200;--t:200" data-rond></a>
+    <a class="m-zone" href="#m-tournage" aria-label="Un lieu de tournage" style="--x:0;--y:1600;--l:853;--t:113"></a>
+  </div>
+</section>
+<section class="m-ecran " id="m-horaires" aria-label="Horaires et prix">
+  <div class="m-planche" style="--w:830;--h:1755">
+    <img src="assets/m/horaires.webp" width="830" height="1755" alt="Horaires et petits prix. Heures d'ouverture : lundi au vendredi, 8 h à 23 h ; samedi et dimanche, 9 h à 21 h. Laveuse 3,50 $. Sécheuse 0,25 $ par tranche. Service tout inclus 8,25 $. Manteau d'hiver 12 $, 2 pour 20 $. Les machines prennent les pièces de 25 ¢. Horaires et tarifs à confirmer." loading="lazy" decoding="async">
+    <a class="m-zone" href="#m-trajet" aria-label="Nous retrouver" style="--x:215;--y:1640;--l:400;--t:62"></a>
+  </div>
+</section>
+<section class="m-film" id="m-film" aria-label="La buanderie, le film">
+  <div class="m-collant">
+  <div class="m-planche" style="--w:933;--h:1541">
+    <img src="assets/m/essorage.webp" width="933" height="1541" alt="On monte d'un tour. La brassée poursuit son cycle : payer, laver, essorer, sécher." loading="lazy" decoding="async">
+    <canvas class="m-canvas" id="m-canvas" width="600" height="600" style="--x:240;--y:667;--l:450;--t:452" role="img" aria-label="Le film de la brassée : la pièce, le lavage, l'essorage, le séchage"></canvas>
+    <span class="m-vitre" aria-hidden="true" style="--x:240;--y:667;--l:450;--t:452"></span>
+    <button class="m-lecture" id="m-lecture" type="button" aria-pressed="false" aria-label="Lecture automatique du film" style="--x:428;--y:1040;--l:78;--t:78"><span></span></button>
+    <p class="m-lcd" aria-live="polite" style="--x:62;--y:1178;--l:840;--t:60"><b id="m-lcd">1/4 · Paiement</b><span class="m-jauge" style="--x:278;--y:14;--l:504;--t:19"><i id="m-jauge"></i></span></p>
+    <span class="m-marque" id="m-marque" aria-hidden="true" style="--x:127;--y:1251;--l:68;--t:68"></span>
+    <span class="m-trait" id="m-trait" aria-hidden="true" style="--x:123;--y:1350;--l:79;--t:5"></span>
+    <button class="m-zone m-etape" type="button" data-etape="0" aria-label="Étape 1 : payer" style="--x:54;--y:1250;--l:210;--t:125"></button>
+    <button class="m-zone m-etape" type="button" data-etape="1" aria-label="Étape 2 : laver" style="--x:264;--y:1250;--l:206;--t:125"></button>
+    <button class="m-zone m-etape" type="button" data-etape="2" aria-label="Étape 3 : essorer" style="--x:470;--y:1250;--l:206;--t:125"></button>
+    <button class="m-zone m-etape" type="button" data-etape="3" aria-label="Étape 4 : sécher" style="--x:676;--y:1250;--l:214;--t:125"></button>
+    <a class="m-zone" href="#m-savoir" aria-label="Passer le film" style="--x:164;--y:1393;--l:606;--t:107"></a>
+  </div>
+  </div>
+</section>
+<section class="m-ecran " id="m-savoir" aria-label="Bon à savoir">
+  <div class="m-planche" style="--w:853;--h:1712">
+    <img src="assets/m/savoir.webp" width="853" height="1712" alt="Bon à savoir, tout pour votre brassée. Monnaie : les machines prennent les pièces de 25 ¢. Monnayeur : changez vos billets sur place. Wi-Fi gratuit pendant la brassée. Laveuse géante pour les tapis et les douillettes. Bobette Express : cueillette et livraison sur appel. Services à confirmer." loading="lazy" decoding="async">
+    <a class="m-zone" href="tel:+15145222612" aria-label="Appeler Bobette Express" style="--x:507;--y:1517;--l:282;--t:84" data-tel-href></a>
+  </div>
+</section>
+<section class="m-ecran " id="m-trajet" aria-label="Pour venir">
+  <div class="m-planche" style="--w:934;--h:1393">
+    <img src="assets/m/trajet.webp" width="934" height="1393" alt="On se retrouve ? 850, avenue Duluth Est. Sortez au métro Mont-Royal, puis suivez l'avenue Duluth Est jusqu'à la buanderie." loading="lazy" decoding="async">
+    <a class="m-zone" href="https://www.google.com/maps/dir/?api=1&amp;destination=850%2C%20avenue%20Duluth%20Est%2C%20Montr%C3%A9al%2C%20QC&amp;travelmode=walking" target="_blank" rel="noopener" aria-label="Itinéraire (ouvre Google Maps)" style="--x:156;--y:1182;--l:319;--t:87"></a>
+    <a class="m-zone" href="tel:+15145222612" aria-label="Appeler" style="--x:491;--y:1182;--l:287;--t:87" data-tel-href></a>
+    <a class="m-zone" href="https://www.google.com/maps/dir/?api=1&amp;destination=850%2C%20avenue%20Duluth%20Est%2C%20Montr%C3%A9al%2C%20QC&amp;travelmode=walking" target="_blank" rel="noopener" aria-label="Ouvrir le plan dans Google Maps" style="--x:20;--y:90;--l:820;--t:880" tabindex="-1"></a>
+  </div>
+</section>
+<section class="m-ecran " id="m-tournage" aria-label="Lieu de tournage">
+  <div class="m-planche" style="--w:853;--h:1711">
+    <img src="assets/m/tournage.webp" width="853" height="1711" alt="Ça tourne chez Bobette. Un lieu, trois décors : la buanderie, sa façade et la ruelle. Films, séries, publicités, vidéoclips, photo. Votre demande arrive directement au propriétaire." loading="lazy" decoding="async">
+    <div class="m-photos" style="--x:18;--y:585;--l:817;--t:491"><img src="assets/img/4c503a9045.webp" width="720" height="540" alt="Intérieur : la rangée de laveuses" loading="lazy" decoding="async" hidden><img src="assets/img/fb5654e97e.webp" width="720" height="540" alt="Façade : les lettres ballons au coin de la rue" loading="lazy" decoding="async"><img src="assets/img/299747941c.webp" width="720" height="540" alt="Ruelle voisine" loading="lazy" decoding="async" hidden></div>
+    <p class="m-compteur" id="m-compteur" style="--x:372;--y:1081;--l:110;--t:30">02 / 03</p>
+    <button class="m-zone" type="button" data-photo="-1" aria-label="Photo précédente" style="--x:36;--y:1068;--l:90;--t:52"></button>
+    <button class="m-zone" type="button" data-photo="+1" aria-label="Photo suivante" style="--x:728;--y:1068;--l:90;--t:52"></button>
+    <button class="m-zone m-onglet" type="button" data-photo="0" aria-label="Intérieur" aria-pressed="false" style="--x:50;--y:1133;--l:240;--t:84"></button>
+    <button class="m-zone m-onglet" type="button" data-photo="1" aria-label="Façade" aria-pressed="true" style="--x:308;--y:1133;--l:238;--t:84"></button>
+    <button class="m-zone m-onglet" type="button" data-photo="2" aria-label="Ruelle" aria-pressed="false" style="--x:563;--y:1133;--l:240;--t:84"></button>
+    <a class="m-zone" href="#m-demande" aria-label="Parlons tournage" style="--x:192;--y:1472;--l:470;--t:56"></a>
+  </div>
+</section>
+<section class="m-ecran " id="m-fiche" aria-label="Préparons votre tournage">
+  <div class="m-planche" style="--w:853;--h:1130">
+    <img src="assets/m/fiche.webp" width="853" height="1130" alt="Préparons votre tournage. Par téléphone : 514 522-2612, pour la buanderie comme pour un tournage." loading="lazy" decoding="async">
+    <a class="m-zone" href="tel:+15145222612" aria-label="Appeler le 514 522-2612" style="--x:110;--y:545;--l:470;--t:80" data-tel-href></a>
+    <a class="m-zone" href="tel:+15145222612" aria-label="Appeler le 514 522-2612" style="--x:70;--y:712;--l:720;--t:240" data-tel-href tabindex="-1"></a>
+    <a class="m-zone" href="#m-demande" aria-label="Décrire mon projet" style="--x:135;--y:1008;--l:585;--t:84"></a>
+  </div>
+</section>
+<section class="m-ecran" id="m-demande" aria-label="Votre demande de tournage">
+  <form class="m-planche" style="--w:753;--h:1953" name="tournage-mobile" method="POST" data-netlify="true" netlify-honeypot="adresse-web" novalidate id="m-form">
+    <img src="assets/m/demande.webp" width="753" height="1953" alt="Parlons tournage. Décrivez votre production. Les champs marqués d'un astérisque sont obligatoires." loading="lazy" decoding="async">
+    <input type="hidden" name="form-name" value="tournage-mobile">
+    <p class="piege"><label>Ne pas remplir <input type="text" name="adresse-web" tabindex="-1" autocomplete="off"></label></p>
+    <label class="m-champ" style="--x:97;--y:684;--l:605;--t:54"><span class="sr">Nom (obligatoire)</span><input name="nom" type="text" autocomplete="name" required></label>
+    <label class="m-champ" style="--x:97;--y:782;--l:605;--t:54"><span class="sr">Maison de production</span><input name="production" type="text" autocomplete="organization"></label>
+    <label class="m-champ" style="--x:97;--y:882;--l:605;--t:54"><span class="sr">Courriel (obligatoire)</span><input name="courriel" type="email" autocomplete="email" required></label>
+    <label class="m-champ" style="--x:97;--y:981;--l:605;--t:54"><span class="sr">Téléphone</span><input name="telephone" type="tel" autocomplete="tel"></label>
+    <p class="m-aide" style="--x:250;--y:1046;--l:440;--t:32">· un seul choix</p>
+    <fieldset class="m-groupe"><legend class="sr">Type de projet (un seul choix)</legend>
+    <label class="m-puce" style="--x:97;--y:1081;--l:201;--t:52"><input type="radio" name="type" value="Long métrage"><span class="sr">Long métrage</span><i aria-hidden="true"></i></label>
+    <label class="m-puce" style="--x:314;--y:1082;--l:184;--t:51"><input type="radio" name="type" value="Série"><span class="sr">Série</span><i aria-hidden="true"></i></label>
+    <label class="m-puce" style="--x:515;--y:1082;--l:187;--t:51"><input type="radio" name="type" value="Publicité"><span class="sr">Publicité</span><i aria-hidden="true"></i></label>
+    <label class="m-puce" style="--x:97;--y:1146;--l:201;--t:52"><input type="radio" name="type" value="Vidéoclip"><span class="sr">Vidéoclip</span><i aria-hidden="true"></i></label>
+    <label class="m-puce" style="--x:314;--y:1146;--l:172;--t:52"><input type="radio" name="type" value="Photo"><span class="sr">Photo</span><i aria-hidden="true"></i></label>
+    </fieldset>
+    <p class="m-aide" style="--x:190;--y:1212;--l:440;--t:32">· plusieurs choix possibles</p>
+    <fieldset class="m-groupe"><legend class="sr">Espaces (plusieurs choix possibles)</legend>
+    <label class="m-puce" style="--x:97;--y:1250;--l:186;--t:53"><input type="checkbox" name="espaces" value="Intérieur"><span class="sr">Intérieur</span><i aria-hidden="true"></i></label>
+    <label class="m-puce" style="--x:300;--y:1250;--l:192;--t:53"><input type="checkbox" name="espaces" value="Façade"><span class="sr">Façade</span><i aria-hidden="true"></i></label>
+    <label class="m-puce" style="--x:509;--y:1250;--l:193;--t:53"><input type="checkbox" name="espaces" value="Ruelle"><span class="sr">Ruelle</span><i aria-hidden="true"></i></label>
+    </fieldset>
+    <label class="m-champ" style="--x:97;--y:1355;--l:605;--t:54"><span class="sr">Dates visées</span><input name="dates" type="text" placeholder="Dates et horaires souhaités"></label>
+    <label class="m-champ" style="--x:97;--y:1460;--l:605;--t:123"><span class="sr">Votre projet (obligatoire)</span><textarea name="message" required></textarea></label>
+    <label class="m-accord" style="--x:92;--y:1643;--l:520;--t:85"><input type="checkbox" name="consentement" value="oui" required><span class="sr">J'accepte que mes renseignements servent uniquement à répondre à cette demande.</span><i aria-hidden="true"></i></label>
+    <a class="m-zone" href="confidentialite.html" aria-label="Politique de confidentialité" style="--x:94;--y:1724;--l:248;--t:34"></a>
+    <button class="m-zone m-envoyer" type="submit" aria-label="Envoyer la demande" style="--x:97;--y:1782;--l:605;--t:72"></button>
+  </form>
+  <p class="m-resultat" id="m-resultat" role="status" hidden></p>
+</section>
+<footer class="m-pied">
+  <p>Chez Bobette · 850, avenue Duluth Est · Montréal · <a href="tel:+15145222612" data-tel>514 522-2612</a></p>
+  <p><a href="confidentialite.html">Politique de confidentialité</a> · <span data-provisoire>Version de démonstration</span></p>
+</footer>
+<nav class="m-barre" aria-label="Raccourcis">
+  <img src="assets/m/barre.webp" width="853" height="130" alt="">
+  <a href="#m-horaires" style="--i:0">Infos</a><a href="#m-trajet" style="--i:1">Itinéraire</a><a href="tel:+15145222612" data-tel-href style="--i:2">Appeler</a><a href="#m-tournage" style="--i:3">Tournages</a>
+</nav>
+</div>
+<!--/MOBILE-->
 
 <!-- Chaque écran est la maquette elle-même (outils/planches.py) ; seuls les textes anglais et ce qui bouge sont posés par-dessus. -->
 <section class="sec-ecran" id="accueil" aria-label="Accueil" data-en-aria="Home">
@@ -359,5 +480,6 @@
 <script src="infos.js" defer></script>
 <script src="js/sequences.js" defer></script>
 <script src="js/v2.js" defer></script>
+<script src="js/mobile.js" defer></script>
 </body>
 </html>
