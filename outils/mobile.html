@@ -1,0 +1,250 @@
+<!--MOBILE-->
+<!-- Version téléphone (≤ 760 px), tout en code. Source : outils/mobile.html → copiée dans index.html par outils/mobile.py.
+     Les mesures suivent les maquettes (853 px de large) : 1 px de maquette = var(--p). -->
+<div class="mob" id="mob">
+
+<!-- INTRO : première visite seulement, 2,5 s au plus -->
+<div class="m-intro f-jaune" id="m-intro" hidden>
+  <div class="mi-boite">
+    <div class="m-enseigne mi-enseigne"><img src="assets/v2/enseigne-m.webp" srcset="assets/v2/enseigne-m.webp 700w, assets/v2/enseigne.webp 1400w" sizes="92vw" width="1400" height="436" alt="Chez Bobette"></div>
+    <p class="m-titre mi-titre" data-l="700" data-en="Here we<br>go round.">Ça va<br>tourner.</p>
+    <p class="m-sous mi-sous" data-en="A little coin. A big visit.">Une petite pièce. Une grande visite.</p>
+    <div class="mi-photo"><img src="assets/mob/intro.webp" width="853" height="622" alt=""></div>
+    <div class="m-lcd mi-lcd"><span class="m-led"></span><b data-en="Getting your visit ready">On prépare votre visite</b><span class="m-jauge"><i id="m-intro-jauge"></i></span></div>
+    <button class="m-papier mi-passer" type="button" id="m-intro-passer"><span data-en="Skip the intro">Passer l'intro</span><svg><use href="#i-fleche"/></svg></button>
+    <p class="mi-adresse">850, avenue Duluth Est · Montréal</p>
+    <span class="mi-fleurs" aria-hidden="true"></span>
+  </div>
+</div>
+
+<!-- 1. ACCUEIL -->
+<section class="m-sec f-jaune m-accueil" id="m-accueil" aria-labelledby="m-t-accueil">
+  <header class="m-tete">
+    <p class="m-adr">850, avenue Duluth Est<br><span>Montréal</span></p>
+    <p class="m-lg"><button class="zone lg" type="button" data-lg="fr" aria-label="Français">FR</button> / <button class="zone lg" type="button" data-lg="en" aria-label="English">EN</button></p>
+  </header>
+  <div class="m-enseigne"><img src="assets/v2/enseigne-m.webp" srcset="assets/v2/enseigne-m.webp 700w, assets/v2/enseigne.webp 1400w" sizes="92vw" width="1400" height="436" alt="Chez Bobette" fetchpriority="high"></div>
+  <h1 class="m-titre" id="m-t-accueil" data-l="733" data-en="The Plateau's<br>laundromat.">La buanderie<br>du Plateau.</h1>
+  <p class="m-sous" data-en="Your load. Your neighbourhood.">Votre brassée. Votre quartier.</p>
+  <div class="ma-machine">
+    <img src="assets/mob/machine-accueil.webp" width="770" height="770" alt="">
+    <p class="m-neon neon"><span class="neon-mot" data-statut>Ouvert</span><small data-statut-suite></small></p>
+    <a class="ma-decouvrir" href="#m-film"><span data-en="Discover">Découvrir</span> <svg><use href="#i-fleche"/></svg></a>
+  </div>
+  <a class="m-papier ma-horaires" href="#m-horaires"><span data-en="Hours &amp; prices">Horaires &amp; prix</span><svg><use href="#i-fleche"/></svg></a>
+  <a class="m-lien ma-venir" href="#m-trajet" data-en="Come see us">Venir nous voir</a>
+</section>
+<div class="couture" style="--de:var(--c-jaune);--vers:var(--c-bleu)" aria-hidden="true"><i class="f-jaune"></i><i class="f-bleu"></i></div>
+<a class="ma-bande f-bleu" href="#m-tournage"><span data-en="A filming location">Un lieu de tournage</span><svg><use href="#i-droite"/></svg></a>
+<div class="couture couture-b" aria-hidden="true"><i class="f-bleu"></i><i class="f-creme"></i></div>
+
+<!-- 2. HORAIRES & PRIX -->
+<section class="m-sec f-creme m-horaires" id="m-horaires" aria-labelledby="m-t-horaires">
+  <div class="m-enseigne"><img src="assets/v2/enseigne-m.webp" srcset="assets/v2/enseigne-m.webp 700w, assets/v2/enseigne.webp 1400w" sizes="92vw" width="1400" height="436" alt="" loading="lazy"></div>
+  <h2 class="m-titre" id="m-t-horaires" data-l="735"><span data-en="Hours">Horaires</span><br><span class="m-souligne" data-en="&amp; low prices.">&amp; petits prix.</span></h2>
+  <div class="mh-panneau">
+    <p class="mh-p-titre" data-en="Opening hours">Heures d'ouverture</p>
+    <dl class="mh-heures" id="m-heures"></dl>
+  </div>
+  <ul class="mh-grille" id="m-prix">
+    <li class="mh-carte f-bleu"><img src="assets/mob/laveuse.webp" width="300" height="248" alt="" loading="lazy"><b class="mh-nom"></b><span class="mh-prix"></span></li>
+    <li class="mh-carte f-jaune"><img src="assets/mob/secheuse.webp" width="312" height="253" alt="" loading="lazy"><b class="mh-nom"></b><span class="mh-prix"></span></li>
+    <li class="mh-carte f-jaune"><img src="assets/mob/serviettes.webp" width="314" height="220" alt="" loading="lazy"><b class="mh-nom"></b><span class="mh-prix"></span></li>
+    <li class="mh-carte f-bleu mh-manteau"><img src="assets/mob/manteau.webp" width="262" height="310" alt="" loading="lazy"><b class="mh-nom"></b><span class="mh-prix"></span></li>
+  </ul>
+  <div class="mh-pieces m-dechire">
+    <img src="assets/mob/piece.webp" width="222" height="222" alt="" loading="lazy">
+    <p><b data-en="Quarters">Pièces de 25 ¢</b><small data-si-exemple data-en="Hours and prices to be confirmed.">Horaires et tarifs à confirmer.</small></p>
+  </div>
+  <a class="m-papier m-papier-jaune mh-retrouver" href="#m-trajet"><span data-en="Find us">Nous retrouver</span><svg><use href="#i-fleche"/></svg></a>
+</section>
+<div class="couture" aria-hidden="true"><i class="f-creme"></i><i class="f-marine"></i></div>
+
+<!-- 3. LE FILM : la brassée avance au défilement -->
+<section class="m-film" id="m-film" aria-labelledby="m-t-film" data-etape="0">
+  <div class="mf-collant">
+    <div class="mf-fond" aria-hidden="true"><i class="f-jaune"></i><i class="f-bleu"></i><i class="f-marine"></i><i class="f-jaune"></i></div>
+    <div class="m-enseigne"><img src="assets/v2/enseigne-m.webp" srcset="assets/v2/enseigne-m.webp 700w, assets/v2/enseigne.webp 1400w" sizes="92vw" width="1400" height="436" alt="" loading="lazy"></div>
+    <h2 class="m-titre mf-titre" id="m-t-film" data-l="690" aria-live="polite">
+      <span data-en="One coin.<br>We're off.">Une pièce.<br>C'est parti.</span>
+      <span data-en="It spins.<br>You breathe.">Ça tourne.<br>Vous soufflez.</span>
+      <span data-en="One more<br>spin.">On monte<br>d'un tour.</span>
+      <span data-en="All warm.<br>All clean.">Tout chaud.<br>Tout propre.</span>
+    </h2>
+    <p class="m-sous mf-sous">
+      <span data-en="Slip in your quarters.">Glissez vos pièces de 25 ¢.</span>
+      <span data-en="Take your time while it washes.">Prenez votre temps pendant le lavage.</span>
+      <span data-en="The load keeps on going.">La brassée poursuit son cycle.</span>
+      <span data-en="One last turn and it's ready.">Encore un tour, et c'est prêt.</span>
+    </p>
+    <div class="mf-machine">
+      <img src="assets/mob/machine-film.webp" width="822" height="822" alt="" loading="lazy">
+      <canvas id="m-canvas" width="600" height="600" role="img" aria-label="Le film de la brassée : la pièce, le lavage, l'essorage, le séchage" data-en-aria="The laundry film: the coin, the wash, the spin, the dry"></canvas>
+      <span class="mf-vitre" aria-hidden="true"></span>
+      <button class="mf-lecture" id="m-lecture" type="button" aria-pressed="false" aria-label="Lecture automatique du film" data-en-aria="Autoplay the film"><span></span></button>
+    </div>
+    <p class="m-lcd mf-lcd"><b id="m-lcd">1/4 · Paiement</b><span class="m-jauge"><i id="m-jauge"></i></span></p>
+    <ol class="mf-etapes m-dechire">
+      <li><button type="button" data-etape="0"><small>01</small><span data-en="Pay">Payer</span></button></li>
+      <li><button type="button" data-etape="1"><small>02</small><span data-en="Wash">Laver</span></button></li>
+      <li><button type="button" data-etape="2"><small>03</small><span data-en="Spin">Essorer</span></button></li>
+      <li><button type="button" data-etape="3"><small>04</small><span data-en="Dry">Sécher</span></button></li>
+    </ol>
+    <a class="m-papier mf-passer" href="#m-savoir"><span data-en="Skip the film">Passer le film</span><svg><use href="#i-fleche"/></svg></a>
+  </div>
+</section>
+<div class="couture" aria-hidden="true"><i class="f-jaune"></i><i class="f-creme"></i></div>
+
+<!-- 4. BON À SAVOIR -->
+<section class="m-sec f-creme m-savoir" id="m-savoir" aria-labelledby="m-t-savoir">
+  <div class="m-enseigne"><img src="assets/v2/enseigne-m.webp" srcset="assets/v2/enseigne-m.webp 700w, assets/v2/enseigne.webp 1400w" sizes="92vw" width="1400" height="436" alt="" loading="lazy"></div>
+  <h2 class="m-titre" id="m-t-savoir" data-l="760"><span class="m-souligne" data-en="Good to know.">Bon à savoir.</span></h2>
+  <p class="ms-sous" data-en="Everything for your load.">Tout pour votre brassée.</p>
+  <ul class="ms-liste">
+    <li class="ms-carte f-jaune ms-piece"><img src="assets/mob/piece.webp" width="222" height="222" alt="" loading="lazy"><div><h3 class="m-etiq" data-en="Coins">Monnaie</h3><p data-en="The machines take quarters.">Les machines prennent les pièces de 25 ¢.</p></div></li>
+    <li class="ms-carte f-bleu"><span class="m-ruban"></span><img src="assets/mob/monnayeur.webp" width="328" height="184" alt="" loading="lazy"><div><h3 class="m-etiq" data-en="Change machine">Monnayeur</h3><p data-en="Break your bills on site.">Changez vos billets sur place.</p></div></li>
+    <li class="ms-carte f-jaune"><img src="assets/mob/wifi.webp" width="348" height="184" alt="" loading="lazy"><div><h3 class="m-etiq">Wi-Fi</h3><p data-en="Free Wi-Fi while your load runs.">Wi-Fi gratuit pendant la brassée.</p></div></li>
+    <li class="ms-carte f-rose"><img src="assets/mob/geante.webp" width="382" height="212" alt="" loading="lazy"><div><h3 class="m-etiq" data-en="Giant washer">Laveuse géante</h3><p data-en="For rugs and comforters.">Pour les tapis et les douillettes.</p></div></li>
+    <li class="ms-carte f-vert-clair"><img src="assets/mob/express.webp" width="360" height="218" alt="" loading="lazy"><div><h3 class="m-etiq">Bobette Express</h3><p data-en="Pickup and delivery by phone.">Cueillette et livraison sur appel.</p><a class="ms-appeler" href="tel:+15145222612" data-tel-href><span data-en="Call">Appeler</span><svg><use href="#i-fleche"/></svg></a></div></li>
+  </ul>
+  <p class="ms-note" data-si-exemple data-en="Services to be confirmed.">Services à confirmer.</p>
+</section>
+<div class="couture" aria-hidden="true"><i class="f-creme"></i><i class="f-jaune"></i></div>
+
+<!-- 5. POUR VENIR -->
+<section class="m-sec f-jaune m-trajet" id="m-trajet" aria-labelledby="m-t-trajet">
+  <div class="m-enseigne"><img src="assets/v2/enseigne-m.webp" srcset="assets/v2/enseigne-m.webp 700w, assets/v2/enseigne.webp 1400w" sizes="92vw" width="1400" height="436" alt="" loading="lazy"></div>
+  <h2 class="m-titre" id="m-t-trajet" data-l="726" data-en="Meet<br>you there?">On se<br>retrouve ?</h2>
+  <p class="m-sous mt-adresse">850, avenue Duluth Est</p>
+  <a class="mt-plan" href="https://www.google.com/maps/dir/?api=1&amp;destination=850%2C%20avenue%20Duluth%20Est%2C%20Montr%C3%A9al%2C%20QC&amp;travelmode=walking" target="_blank" rel="noopener" aria-label="Ouvrir le trajet dans Google Maps" data-en-aria="Open the route in Google Maps">
+    <span class="mt-metro"><svg><use href="#i-metro"/></svg><b>Mont-Royal</b></span>
+    <span class="mt-rue">Avenue Duluth Est</span>
+    <svg class="mt-route" viewBox="0 0 800 520" aria-hidden="true"><path d="M178 150 V 352 Q 178 384 210 384 H 718" fill="none" stroke="#c9171a" stroke-width="15" stroke-linecap="round" stroke-dasharray="0 34"/><circle cx="742" cy="384" r="17" fill="none" stroke="#111" stroke-width="5"/><path d="M742 340v-26M712 352l-14-18M772 352l14-18" stroke="#111" stroke-width="5" stroke-linecap="round"/></svg>
+  </a>
+  <ol class="mt-etapes m-dechire">
+    <li data-en="Get off at Mont-Royal metro.">Sortez au métro Mont-Royal.</li>
+    <li data-en="Walk down to Duluth Avenue.">Descendez jusqu'à l'avenue Duluth.</li>
+    <li data-en="Head east on Duluth.">Suivez Duluth vers l'est.</li>
+    <li data-en="Look for the colourful letters. You're at Bobette's!">Repérez les lettres colorées. Vous êtes chez Bobette !</li>
+  </ol>
+  <figure class="mt-photo"><span class="m-ruban"></span><img src="assets/img/fb5654e97e.webp" width="720" height="540" alt="La façade de Chez Bobette, avec ses lettres ballons, au coin de l'avenue Duluth" data-en-alt="Chez Bobette's storefront with its balloon letters, on Duluth Avenue" loading="lazy"><figcaption><span data-en="Our place, on">Chez nous, sur</span> <u>Duluth</u></figcaption></figure>
+  <p class="mt-boutons">
+    <a class="mt-btn mt-itin" href="https://www.google.com/maps/dir/?api=1&amp;destination=850%2C%20avenue%20Duluth%20Est%2C%20Montr%C3%A9al%2C%20QC&amp;travelmode=walking" target="_blank" rel="noopener"><svg><use href="#i-pin"/></svg><span data-en="Directions">Itinéraire</span><svg class="fl"><use href="#i-fleche"/></svg></a>
+    <a class="mt-btn mt-tel" href="tel:+15145222612" data-tel-href><svg><use href="#i-tel"/></svg><span data-en="Call">Appeler</span></a>
+  </p>
+</section>
+<div class="couture" aria-hidden="true"><i class="f-jaune"></i><i class="f-vert"></i></div>
+
+<!-- 6. LIEU DE TOURNAGE -->
+<section class="m-sec f-vert m-tournage" id="m-tournage" aria-labelledby="m-t-tournage">
+  <p class="mn-sur" data-en="Filming location · Montréal">Lieu de tournage · Montréal</p>
+  <div class="m-enseigne"><img src="assets/v2/enseigne-m.webp" srcset="assets/v2/enseigne-m.webp 700w, assets/v2/enseigne.webp 1400w" sizes="92vw" width="1400" height="436" alt="" loading="lazy"></div>
+  <h2 class="m-titre m-titre-jaune" id="m-t-tournage" data-l="775" data-en="Rolling at<br>Chez Bobette.">Ça tourne.<br>Chez Bobette.</h2>
+  <div class="mn-pellicule">
+    <p class="mn-kodak" aria-hidden="true"><span>Kodak Portra 400</span><span>43</span><span>Kodak Portra 400</span></p>
+    <div class="mn-photos" id="m-photos">
+      <img src="assets/img/4c503a9045.webp" width="720" height="540" alt="L'intérieur : la rangée de laveuses" data-en-alt="Inside: the row of washers" loading="lazy" hidden>
+      <img src="assets/img/fb5654e97e.webp" width="720" height="540" alt="La façade et ses lettres ballons" data-en-alt="The storefront and its balloon letters" loading="lazy">
+      <img src="assets/img/299747941c.webp" width="720" height="540" alt="La ruelle voisine" data-en-alt="The lane next door" loading="lazy" hidden>
+    </div>
+    <p class="mn-bas"><button type="button" data-photo="-1" aria-label="Photo précédente" data-en-aria="Previous photo"><svg><use href="#i-droite"/></svg></button><span id="m-compteur">02 / 03</span><button type="button" data-photo="+1" aria-label="Photo suivante" data-en-aria="Next photo"><svg><use href="#i-droite"/></svg></button></p>
+  </div>
+  <div class="mn-onglets" role="group" aria-label="Décors" data-en-aria="Sets">
+    <button type="button" class="m-dechire" data-photo="0" aria-pressed="false"><b>01</b><span data-en="Inside">Intérieur</span></button>
+    <button type="button" class="m-dechire" data-photo="1" aria-pressed="true"><b>02</b><span data-en="Storefront">Façade</span></button>
+    <button type="button" class="m-dechire" data-photo="2" aria-pressed="false"><b>03</b><span data-en="Lane">Ruelle</span></button>
+  </div>
+  <div class="mn-carte m-dechire">
+    <span class="m-ruban"></span>
+    <h3 data-en="One place, three sets.">Un lieu, trois décors.</h3>
+    <p class="mn-c-sous" data-en="The laundromat, its storefront and the lane.">La buanderie, sa façade et la ruelle.</p>
+    <p class="mn-genres" data-en="Films · Series · Ads · Music videos · Photo">Films · Séries · Publicités · Vidéoclips · Photo</p>
+    <a class="m-btn-jaune" href="#m-demande"><span data-en="Let's talk filming">Parlons tournage</span><svg><use href="#i-fleche"/></svg></a>
+    <a class="m-lien" href="#m-fiche" id="m-lien-fiche" hidden data-en="See the technical sheet">Voir la fiche technique</a>
+    <p class="mn-note" data-en="Your request goes straight to the owner.">Votre demande arrive directement au propriétaire.</p>
+    <img class="mn-clap" src="assets/mob/clap.webp" width="163" height="200" alt="" loading="lazy">
+  </div>
+</section>
+
+<!-- 7. PRÉPARONS VOTRE TOURNAGE -->
+<section class="m-sec f-vert m-prep" id="m-fiche" aria-labelledby="m-t-prep">
+  <div class="m-enseigne"><img src="assets/v2/enseigne-m.webp" srcset="assets/v2/enseigne-m.webp 700w, assets/v2/enseigne.webp 1400w" sizes="92vw" width="1400" height="436" alt="" loading="lazy"></div>
+  <h2 class="m-titre m-titre-jaune" id="m-t-prep" data-l="755" data-en="Let's prep<br>your shoot.">Préparons<br>votre tournage.</h2>
+  <div class="mp-fiche m-dechire" id="m-fiche-carte" hidden>
+    <span class="m-ruban"></span>
+    <h3 class="m-souligne" data-en="Technical sheet">Fiche technique</h3>
+    <dl id="m-fiche-liste"></dl>
+  </div>
+  <div class="mp-tel m-dechire">
+    <span class="m-ruban"></span>
+    <p class="mp-par" data-en="By phone">Par téléphone</p>
+    <a class="mp-num" href="tel:+15145222612" data-tel>514 522-2612</a>
+    <p class="mp-pour" data-en="For the laundromat or a shoot.">Pour la buanderie comme pour un tournage.</p>
+    <p class="mp-tirez" aria-hidden="true" data-en="Take one!">Tirez-en une !</p>
+  </div>
+  <div class="mp-fleurs">
+    <ul class="mp-languettes" aria-hidden="true">
+      <li><a href="tel:+15145222612" data-tel-href tabindex="-1"><svg><use href="#i-tel"/></svg><span data-tel>514 522-2612</span></a></li>
+      <li><a href="tel:+15145222612" data-tel-href tabindex="-1"><svg><use href="#i-tel"/></svg><span data-tel>514 522-2612</span></a></li>
+      <li><a href="tel:+15145222612" data-tel-href tabindex="-1"><svg><use href="#i-tel"/></svg><span data-tel>514 522-2612</span></a></li>
+      <li class="tiree"><a href="tel:+15145222612" data-tel-href tabindex="-1"><svg><use href="#i-tel"/></svg><span data-tel>514 522-2612</span></a></li>
+      <li class="partie"></li>
+      <li><a href="tel:+15145222612" data-tel-href tabindex="-1"><svg><use href="#i-tel"/></svg><span data-tel>514 522-2612</span></a></li>
+    </ul>
+    <a class="m-btn-jaune mp-decrire" href="#m-demande"><span data-en="Describe my project">Décrire mon projet</span><svg class="bas"><use href="#i-droite"/></svg></a>
+  </div>
+</section>
+
+<!-- 8. VOTRE DEMANDE -->
+<section class="m-sec f-vert m-demande" id="m-demande" aria-labelledby="m-t-demande">
+  <div class="m-enseigne"><img src="assets/v2/enseigne-m.webp" srcset="assets/v2/enseigne-m.webp 700w, assets/v2/enseigne.webp 1400w" sizes="92vw" width="1400" height="436" alt="" loading="lazy"></div>
+  <h2 class="m-titre m-titre-jaune" id="m-t-demande" data-l="714" data-en="Let's talk<br>filming.">Parlons<br>tournage.</h2>
+  <form class="md-cahier" id="m-form" name="tournage-mobile" method="POST" data-netlify="true" netlify-honeypot="adresse-web" novalidate>
+    <input type="hidden" name="form-name" value="tournage-mobile">
+    <p class="piege"><label>Ne pas remplir <input type="text" name="adresse-web" tabindex="-1" autocomplete="off"></label></p>
+    <p class="md-entete">Chez Bobette · N° 0850</p>
+    <h3 class="m-souligne" data-en="Describe your production">Décrivez votre production</h3>
+    <p class="md-aide" data-en="Fields marked * are required.">Les champs marqués d'un * sont obligatoires.</p>
+    <label class="md-champ"><span><span data-en="Name">Nom</span> *</span><input type="text" name="nom" autocomplete="name" required></label>
+    <label class="md-champ"><span data-en="Production company">Maison de production</span><input type="text" name="production" autocomplete="organization"></label>
+    <label class="md-champ"><span><span data-en="Email">Courriel</span> *</span><input type="email" name="courriel" autocomplete="email" required></label>
+    <label class="md-champ"><span data-en="Phone">Téléphone</span><input type="tel" name="telephone" autocomplete="tel"></label>
+    <fieldset class="md-champ"><legend><span data-en="Project type">Type de projet</span> <small data-en="· one choice">· un seul choix</small></legend>
+      <div class="md-puces">
+        <label><input type="radio" name="type" value="Long métrage"><span data-en="Feature film">Long métrage</span></label>
+        <label><input type="radio" name="type" value="Série"><span data-en="Series">Série</span></label>
+        <label><input type="radio" name="type" value="Publicité"><span data-en="Commercial">Publicité</span></label>
+        <label><input type="radio" name="type" value="Vidéoclip"><span data-en="Music video">Vidéoclip</span></label>
+        <label><input type="radio" name="type" value="Photo"><span>Photo</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="md-champ"><legend><span data-en="Spaces">Espaces</span> <small data-en="· several choices">· plusieurs choix possibles</small></legend>
+      <div class="md-puces md-trois">
+        <label><input type="checkbox" name="espaces" value="Intérieur"><span data-en="Inside">Intérieur</span></label>
+        <label><input type="checkbox" name="espaces" value="Façade"><span data-en="Storefront">Façade</span></label>
+        <label><input type="checkbox" name="espaces" value="Ruelle"><span data-en="Lane">Ruelle</span></label>
+      </div>
+    </fieldset>
+    <label class="md-champ"><span data-en="Target dates">Dates visées</span><input type="text" name="dates" placeholder="Dates et horaires souhaités"></label>
+    <label class="md-champ"><span><span data-en="Your project">Votre projet</span> *</span><textarea name="message" rows="4" required></textarea><small data-en="Scenes, number of days, crew size, power, trucks.">Scènes prévues, nombre de jours, taille de l'équipe, électricité, camions.</small></label>
+    <label class="md-accord"><input type="checkbox" name="consentement" value="oui" required><span data-en="I agree that my information is used only to answer this request. *">J'accepte que mes renseignements servent uniquement à répondre à cette demande. *</span></label>
+    <a class="md-conf" href="confidentialite.html" data-en="Privacy policy">Politique de confidentialité</a>
+    <button class="m-btn-jaune md-envoyer" type="submit"><span data-en="Send the request">Envoyer la demande</span><svg><use href="#i-fleche"/></svg></button>
+    <p class="md-resultat" id="m-resultat" role="status" hidden></p>
+  </form>
+</section>
+<div class="couture" aria-hidden="true"><i class="f-vert"></i><i class="f-bleu"></i></div>
+
+<footer class="m-pied f-bleu">
+  <p>Chez Bobette · 850, avenue Duluth Est · Montréal · <a href="tel:+15145222612" data-tel>514 522-2612</a></p>
+  <p><a href="confidentialite.html" data-en="Privacy policy">Politique de confidentialité</a> <span data-provisoire>· <span data-en="Demo version">Version de démonstration</span></span></p>
+</footer>
+
+<nav class="m-barre" aria-label="Raccourcis" data-en-aria="Shortcuts">
+  <a href="#m-horaires"><svg><use href="#i-info"/></svg><span>Infos</span></a>
+  <a href="#m-trajet"><svg><use href="#i-pin"/></svg><span data-en="Directions">Itinéraire</span></a>
+  <a href="tel:+15145222612" data-tel-href><svg><use href="#i-tel"/></svg><span data-en="Call">Appeler</span></a>
+  <a href="#m-tournage"><svg><use href="#i-clap"/></svg><span data-en="Filming">Tournages</span></a>
+</nav>
+</div>
+<!--/MOBILE-->

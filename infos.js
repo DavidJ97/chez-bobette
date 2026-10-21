@@ -46,7 +46,7 @@ window.BOBETTE = {
   tarifs: [
     { nom: "Laveuse", nom_en: "Washer", prix: "3,50 $", prix_en: "$3.50", exemple: true },
     { nom: "Sécheuse", nom_en: "Dryer", prix: "0,25 $ par tranche", prix_en: "$0.25 per time block", exemple: true },
-    { nom: "Service tout inclus", nom_en: "Full-service wash", prix: "8,25 $", prix_en: "$8.25",
+    { nom: "Service tout inclus", nom_en: "Full-service wash", court: "Tout inclus", court_en: "Full service", prix: "8,25 $", prix_en: "$8.25",
       note: "Affiché en vitrine", note_en: "Posted in the window" },
     { nom: "Manteau d'hiver", nom_en: "Winter coat", prix: "12 $ · 2 pour 20 $", prix_en: "$12 · 2 for $20",
       note: "Affiché en vitrine", note_en: "Posted in the window" }

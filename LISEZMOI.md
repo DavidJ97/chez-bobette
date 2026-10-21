@@ -8,11 +8,14 @@ Site statique : aucun serveur, aucune base de données, aucun pistage.
 
 ## Version téléphone (≤ 760 px)
 
-Les maquettes téléphone corrigées sont dans `assets/m/` ; `outils/mobile.py` génère leur bloc dans `index.html`
-(zones cliquables, champs du formulaire, film). Fichiers : `styles/mobile.css`, `js/mobile.js`.
-Corrections faites : intro montrée une seule fois (2,5 s au plus), faute « livraison », menu « Tirez » retiré (seule la
-barre du bas navigue), fiche technique vide retirée, vraies photos à la place de la façade générée, néon qui suit les
-vraies heures, itinéraire en un seul écran, prix de la sécheuse et choix du formulaire précisés.
+Entièrement en code (HTML et CSS), d'après les maquettes téléphone : textes, boutons, panneau des heures, cartes de prix,
+plan, formulaire. Seules les photos et les lettres ballons sont des images (`assets/mob/`, `assets/img/`, `assets/v2/`).
+- `outils/mobile.html` : le contenu ; `python3 outils/mobile.py` le recopie dans `index.html` (bloc `<!--MOBILE-->`).
+- `styles/mobile.css` : 1 px de maquette (853 px de large) = `var(--p)`, donc tout suit la largeur du téléphone.
+- `js/mobile.js` : intro (une seule fois, 2,5 s au plus), heures, prix et fiche technique tirés d'`infos.js`,
+  film dans le hublot au défilement, photos du lieu, formulaire.
+- La fiche technique n'apparaît que si `lieu` dans `infos.js` contient au moins une valeur.
+- FR / EN fonctionne aussi sur téléphone (attributs `data-en`).
 
 ## Le site
 
